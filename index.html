@@ -28,22 +28,27 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <!-- Menu Responsive, hide in small screen-->
-        <div class="collapse navbar-collapse" id="navbar_res">
+        <div class="collapse navbar-collapse menu" id="navbar_res">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link active" href="#">Trang Chủ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#about">Danh Mục</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#man">Giới Thiệu</a>
+                    <a class="nav-link" href="#" class="dropdown">Danh Mục</a>
+                    <ul class="submenu">
+                        <li><a class="nav-link" href="#">Kính Nam</a></li>
+                        <li><a class="nav-link" href="#">Kính Nữ</a></li>
+                        <li><a class="nav-link" href="#">Khác</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#cont">Liên Hệ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="modal" data-target="#login" href="#login">Login</a>
+                    <a class="nav-link" data-toggle="modal" data-target="#login" href="#login">Đăng Nhập</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#cont"><i class="fa fa-shopping-cart cart"></i></a>
                 </li>
             </ul>
         </div>   
@@ -96,70 +101,35 @@
             <li data-target="#slides" data-slide-to="0" class="active"></li>
             <li data-target="#slides" data-slide-to="1"></li>
             <li data-target="#slides" data-slide-to="2"></li>
-            <li data-target="#slides" data-slide-to="3"></li>
-            <li data-target="#slides" data-slide-to="4"></li>
-            <li data-target="#slides" data-slide-to="5"></li>
-            <li data-target="#slides" data-slide-to="6"></li>
         </ul>
         <!-- Ảnh -->
         <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="./img/cars_img1.png">
+            <div class="carousel-item  active">
+                <img src="./img/slide1.jpg"  id="slide-after">
+                <div class="carousel-caption">
+                    <h2>CHÀO MỪNG ĐẾN VỚI MẮT KÍNH</h2>
+                    <h1 class="display-2">DUY HOÀNG</h1>
+                </div>
             </div>
             <div class="carousel-item">
-                <img src="./img/cars_JYP.png"  id="slide-after">
+                <img src="./img/slide2.jpg"  id="slide-after">
                 <div class="carousel-caption">
-                    <h1 class="display-3">J.Y.Park</h1>
+                    <h1 class="display-4">BỘ SƯU TẬP MIANVA</h1>
                     <button type="button" class="btn btn-outline-light btn-md">
-                        About J.Y.Park
+                        Xem Thêm
                     </button>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="./img/cars_got7.jpg"  id="slide-after">
+                <img src="./img/slide3.jpg"  id="slide-after">
                 <div class="carousel-caption">
-                    <h1 class="display-3">GOT7</h1>
+                    <h1 class="display-4">TOP BÁN CHẠY 2020</h1>
                     <button type="button" class="btn btn-outline-light btn-md">
-                        About GOT7
+                        Xem Thêm
                     </button>
                 </div>
             </div>
-            <div class="carousel-item">
-                <img src="./img/cars_day6.jpg"  id="slide-after">
-                <div class="carousel-caption">
-                    <h1 class="display-3">DAY6</h1>
-                    <button type="button" class="btn btn-outline-light btn-md">
-                        About DAY6
-                    </button>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="./img/cars_twice.jpg"  id="slide-after">
-                <div class="carousel-caption">
-                    <h1 class="display-3">TWICE</h1>
-                    <button type="button" class="btn btn-outline-light btn-md">
-                        About TWICE
-                    </button>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="./img/cars_SK.jpg"  id="slide-after">
-                <div class="carousel-caption">
-                    <h1 class="display-3">STRAY KIDS</h1>
-                    <button type="button" class="btn btn-outline-light btn-md">
-                        About STRAY KIDS
-                    </button>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="./img/cars_itzy.jpg"  id="slide-after">
-                <div class="carousel-caption">
-                    <h1 class="display-3">ITZY</h1>
-                    <button type="button" class="btn btn-outline-light btn-md">
-                        About ITZY
-                    </button>
-                </div>
-            </div>
+
             <a class="carousel-control-prev" href="#slides" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
@@ -171,209 +141,131 @@
         </div>
     </div>
 
-    <!----------------------- III. About -->
-    <br id="about">
-    <div class="container-fluid padding pt-5">
-        <div class="row welcome text-center">
-            <div class="col-12">
-                <h1 class="display-4">ABOUT</h1>
-                <hr id="hra">
+    <div class="container">
+    <!----------------------- III. San Pham Moi -->
+        <div class="container-fluid padding pt-5">
+        <div>
+            <h2 class="text-center text-color"><i class="fa fa-tag"></i>  SẢN PHẨM MỚI</h2>
+            <hr id="hra">
+        </div>
+        <div class="row">
+            <div class="col-md-3 product_item">
+                <img class="product_image" src="./img/pic1.jpg">
+                <h3 class="text-color">Product Name</h3>
+                <p class="price">2.500.000 VND</p>
+                <button class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </button>
             </div>
-            <div class="col-12">
-                <p class="lead">
-                    JYP Entertainment Corporationis a South Korean multinational entertainment and record label conglomerate founded in 1997 by J. Y. Park.It is one of the largest entertainment companies in South Korea, and operates as a record label, talent agency, music production company, event management, concert production company and music publishing house. In addition, the company operates various subsidiary ventures and divisions worldwide.
-                    Notable artists include 2PM, JJ Project, Got7, Day6, Twice, Stray Kids and Itzy. It has also handled Rain, g.o.d, Wonder Girls, 2AM, Miss A, 15&, and Baek A-yeon.
-                </p>
+            <div class="col-md-3 product_item">
+                <img class="product_image" src="./img/pic3.jpg">
+                <h3 class="text-color">Product Name</h3>
+                <p class="price">2.500.000 VND</p>
+                <button class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </button>
+            </div>
+            <div class="col-md-3 product_item">
+                <img class="product_image" src="./img/pic2.jpg">
+                <h3 class="text-color">Product Name</h3>
+                <p class="price">2.500.000 VND</p>
+                <button class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </button>
+            </div>
+            <div class="col-md-3 product_item">
+                <img class="product_image" src="./img/pic5.jpg">
+                <h3 class="text-color">Product Name</h3>
+                <p class="price">2.500.000 VND</p>
+                <button class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </button>
+            </div>
+            <div class="col-md-3 product_item">
+                <img class="product_image" src="./img/pic2.jpg">
+                <h3 class="text-color">Product Name</h3>
+                <p class="price">2.500.000 VND</p>
+                <button class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </button>
+            </div>
+            <div class="col-md-3 product_item">
+                <img class="product_image" src="./img/pic1.jpg">
+                <h3 class="text-color">Product Name</h3>
+                <p class="price">2.500.000 VND</p>
+                <button class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </button>
+            </div>
+            <div class="col-md-3 product_item">
+                <img class="product_image" src="./img/pic7.jpg">
+                <h3 class="text-color">Product Name</h3>
+                <p class="price">2.500.000 VND</p>
+                <button class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </button>
+            </div>
+            <div class="col-md-3 product_item">
+                <img class="product_image" src="./img/pic8.jpg">
+                <h3 class="text-color">Product Name</h3>
+                <p class="price">2.500.000 VND</p>
+                <button class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </button>
             </div>
         </div>
+        </div>
+
+    <!----------------------- III. San Pham Sale -->
+    <div class="container-fluid padding pt-5">
+        <div>
+            <h2 class="text-center text-color">SẢN PHẨM GIẢM GIÁ </h2>
+            <hr id="hra">
+        </div>
+        <div class="row">
+            <div class="col-md-3 product_item">
+                <img class="product_image" src="./img/pic1.jpg">
+                <h3 class="text-color">Product Name</h3>
+                <p class="price">2.500.000 VND</p>
+                <button class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </button>
+            </div>
+            <div class="col-md-3 product_item">
+                <img class="product_image" src="./img/pic3.jpg">
+                <h3 class="text-color">Product Name</h3>
+                <p class="price">2.500.000 VND</p>
+                <button class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </button>
+            </div>
+            <div class="col-md-3 product_item">
+                <img class="product_image" src="./img/pic2.jpg">
+                <h3 class="text-color">Product Name</h3>
+                <p class="price">2.500.000 VND</p>
+                <button class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </button>
+            </div>
+            <div class="col-md-3 product_item">
+                <img class="product_image" src="./img/pic5.jpg">
+                <h3 class="text-color">Product Name</h3>
+                <p class="price">2.500.000 VND</p>
+                <button class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </button>
+            </div>
+            <div class="col-md-3 product_item">
+                <img class="product_image" src="./img/pic2.jpg">
+                <h3 class="text-color">Product Name</h3>
+                <p class="price">2.500.000 VND</p>
+                <button class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </button>
+            </div>
+            <div class="col-md-3 product_item">
+                <img class="product_image" src="./img/pic1.jpg">
+                <h3 class="text-color">Product Name</h3>
+                <p class="price">2.500.000 VND</p>
+                <button class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </button>
+            </div>
+            <div class="col-md-3 product_item">
+                <img class="product_image" src="./img/pic7.jpg">
+                <h3 class="text-color">Product Name</h3>
+                <p class="price">2.500.000 VND</p>
+                <button class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </button>
+            </div>
+            <div class="col-md-3 product_item">
+                <img class="product_image" src="./img/pic8.jpg">
+                <h3 class="text-color">Product Name</h3>
+                <p class="price">2.500.000 VND</p>
+                <button class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </button>
+            </div>
+        </div>
+        </div>    
     </div>
   
-    <!----------------------- IV. Artist -->
-    <br id="ars">
-    <div class="container-fluid padding pt-5">
-        <div class="row text-center">
-            <div class="col-12 pb-3">
-                <h1 class="display-4">ARTIST</h1>
-                <hr id="hra">
-            </div>
-            <div class="col-sm-12 col-md-4 grs" data-toggle="collapse" data-target="#jyp">
-                <img src="./img/cars_JYP.png" id="img_Groups">
-                <h2 id="arts_name">J.Y.Park</h2>
-                <div id="jyp" class="collapse art_collapse">
-                    <p class="px-4 pb-4 text-justify text-sm">
-                        Park Jin-young born December 13, 1971, also known by his stage names J. Y. Park and The Asiansoul or the initials JYP, is a South Korean singer-songwriter, record producer, record executive, and reality television show judge.Park rose to stardom as a singer following the release of his 1994 debut album, Blue City. In 1997, he became the founder and co-CEO of JYP Entertainment.
-                    </p>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-4 grs" data-toggle="collapse" data-target="#got">
-                <img src="./img/cars_got7.jpg" id="img_Groups">
-                <h2>GOT7</h2>
-                <div id="got" class="collapse art_collapse">
-                    <p class="px-4 pb-4 text-justify text-sm">
-                        Park Jin-young born December 13, 1971, also known by his stage names J. Y. Park and The Asiansoul or the initials JYP, is a South Korean singer-songwriter, record producer, record executive, and reality television show judge.Park rose to stardom as a singer following the release of his 1994 debut album, Blue City. In 1997, he became the founder and co-CEO of JYP Entertainment.
-                    </p>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-4 grs">
-                <img src="./img/cars_day6.jpg" id="img_Groups">
-                <h2>DAY6</h2>
-            </div>
-            <div class="col-sm-12 col-md-4 grs">
-                <img src="./img/cars_twice.jpg" id="img_Groups">
-                <h2>TWICE</h2>
-            </div>
-            <div class="col-sm-12 col-md-4 grs">
-                <img src="./img/cars_SK.jpg" id="img_Groups">
-                <h2>STRAY KIDS</h2>
-            </div>
-            <div class="col-sm-12 col-md-4 grs">
-                <img src="./img/cars_itzy.jpg" id="img_Groups">
-                <h2 id="arts_name">ITZY</h2>
-            </div>
-        </div>
-    </div>
-    
-<!----------------------- V. Album -->
-<br id="album">
-<div class="container">
-    <div class="row">
-        <div class="col-12 text-center">
-            <h1 class="display-4 pt-5">ALBUM</h1>
-            <hr id="hra">
-        </div>
-        <div class="col-sm-12 col-md-6">
-            <img src="./img/more&more.jpg" class="img-fluid">
-        </div>
-        <div class="col-sm-12 col-md-6 p-100 p-5">
-            <h1 class="text-warning">MORE & MORE</h1>
-            <p>More & More is the ninth Korean EP by the South Korean girl group Twice. It was released by JYP Entertainment and Republic Records on June 1, 2020, and features the lead single of the same name.
-                It is their first release with Republic Records.
-            </p>
-            <button class="btn btn-warning text-dark">Go to store</button>
-        </div>
-
-        <div class="col-sm-12 col-md-6 p-100 p-5 text-right">
-            <h1 class="text-secondary">NOT BY THE MOON</h1>
-            <p>More & More is the ninth Korean EP by the South Korean girl group Twice. It was released by JYP Entertainment and Republic Records on June 1, 2020, and features the lead single of the same name.
-                It is their first release with Republic Records.
-            </p>
-            <button class="btn btn-secondary text-light">Go to store</button>
-        </div>
-        <div class="col-sm-12 col-md-6 p-5">
-            <img src="./img/NBTM.png" class="img-fluid">
-        </div>
-
-        <div class="col-sm-12 col-md-6 p-5">
-            <img src="./img/demon.jpg" class="img-fluid">
-        </div>
-        <div class="col-sm-12 col-md-6 p-100 p-5">
-            <h1 class="text-danger">DEMON</h1>
-            <p>More & More is the ninth Korean EP by the South Korean girl group Twice. It was released by JYP Entertainment and Republic Records on June 1, 2020, and features the lead single of the same name.
-                It is their first release with Republic Records.
-            </p>
-            <button class="btn btn-danger text-light">Go to store</button>
-        </div>
-
-        <div class="col-sm-12 col-md-6 p-100 p-5 text-right">
-            <h1 class="text-secondary">GO:LIVE</h1>
-            <p>More & More is the ninth Korean EP by the South Korean girl group Twice. It was released by JYP Entertainment and Republic Records on June 1, 2020, and features the lead single of the same name.
-                It is their first release with Republic Records.
-            </p>
-            <button class="btn btn-secondary text-light">Go to store</button>
-        </div>
-        <div class="col-sm-12 col-md-6 p-5">
-            <img src="./img/golive.png" class="img-fluid">
-        </div>
-
-        <div class="col-sm-12 col-md-6 p-5">
-            <img src="./img/notshy.jpg" class="img-fluid">
-        </div>
-        <div class="col-sm-12 col-md-6 p-100 p-5">
-            <h1 class="text-warning">NOT SHY</h1>
-            <p>More & More is the ninth Korean EP by the South Korean girl group Twice. It was released by JYP Entertainment and Republic Records on June 1, 2020, and features the lead single of the same name.
-                It is their first release with Republic Records.
-            </p>
-            <button class="btn btn-warning text-dark">Go to store</button>
-        </div>
-    </div>
-</div>
-
-<!----------------------- VI. Managers -->
-<br id="man">
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12 text-center pb-4">
-            <h1 class="display-4 pt-5">MANAGER</h1>
-            <hr id="hra">
-        </div>
-    <div class="col-3">
-        <div class="card border-0">
-            <img src="./img/man1.jpg" class="card-img-top rounded-circle w-50 mx-auto d-block">
-            <div class="card-body text-center">
-                <h3 class="card-title">Wook Jung</h3>
-                <p class="card-text">
-                    Presently, Wook Jung holds the position of Chief Executive Officer & Director at JYP Entertainment Corp.
-                </p>
-                <button type="button" class="btn btn-dark btn-md">
-                    See Profile
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-3">
-        <div class="card border-0">
-            <img src="./img/man2.jpg" class="card-img-top rounded-circle w-50 mx-auto d-block">
-            <div class="card-body text-center">
-                <h3 class="card-title">Sang-Bong Byun</h3>
-                <p class="card-text">
-                    Presently, Wook Jung holds the position of Chief Executive Officer & Director at JYP Entertainment Corp.
-                </p>
-                <button type="button" class="btn btn-dark btn-md">
-                    See Profile
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-3">
-        <div class="card border-0">
-            <img src="./img/man3.jpg" class="card-img-top rounded-circle w-50 mx-auto d-block">
-            <div class="card-body text-center">
-                <h3 class="card-title">Jin-Young Park</h3>
-                <p class="card-text">
-                    Presently, Jin-Young Park holds the position of Chief Executive Officer & Director at JYP Entertainment Corp.
-                </p>
-                <button type="button" class="btn btn-dark btn-md">
-                    See Profile
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-3">
-        <div class="card border-0">
-            <img src="./img/man4.jpg" class="card-img-top rounded-circle w-50 mx-auto d-block">
-            <div class="card-body text-center">
-                <h3 class="card-title">Hae-Sung Jo</h3>
-                <p class="card-text">
-                    Presently, Jin-Young Park holds the position of Chief Executive Officer & Director at JYP Entertainment Corp.
-                </p>
-                <button type="button" class="btn btn-dark btn-md">
-                    See Profile
-                </button>
-            </div>
-        </div>
-    </div>
-    </div>
-</div>
 
 <!----------------------- VII. Contact -->
 <br id="cont">
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 text-center ">
-            <h1 class="display-4 pt-5">CONTACT</h1>
+            <h2 class="text-center">LIÊN HỆ</h2>
             <hr id="hra">
         </div>
         <div class="col-12 social text-center">
@@ -385,29 +277,29 @@
         </div>
     </div>
 </div>
-
+</div>
 <!----------------------- VIII. Footer -->
 <footer>
     <div class="container-fluid mt-5 pt-3 bg-color text-light text-center">
         <div class="row">
            <div class="col-4">
-               <img src="./img/jyplogo.png" id="logo_ft">
+               <img src="./img/logo2.png" id="logo_ft">
            </div>
            <div class="col-4 pl-5">
-                <h4>CONTACT</h4>
+                <h4>LIÊN HỆ</h4>
                 <hr id="hr_ft">
-                <P>02-225-8100</P>
-                <p>205, Gangdong-daero, Gangdong-gu,</p>
-                <p>Seoul, Republic of Korea</p>
+                <P>0868 478 729</P>
+                <p>Tổ 14 Ngọc Thảo - Ngọc Hiệp</p>
+                <p>Nha Trang, Khánh Hòa</p>
             </div>
             <div class="col-4">
-                <h4>SERVICE</h4>
+                <h4>DỊCH VỤ</h4>
                 <hr id="hr_ft">
-                <p>Music production</p>
-                <p>Record distribution</p>
-                <p>Artist management</p>
+                <p>Kinh Doanh Kính Mắt</p>
+                <p>Kính Thời Trang</p>
+                <p>Phù Hợp Mọi Đối Tượng</p>
             </div>
-            <div class="col-12"><i class="fa fa-copyright"></i>Duy Phung 2020</div>
+            <div class="col-12 bg-light text-color pt-2 pb-2"><b><i class="fa fa-copyright"></i> Phùng Bá Duy 2020</b></div>
         </div>
     </div>
 </footer>
