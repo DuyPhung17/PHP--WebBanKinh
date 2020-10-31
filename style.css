@@ -97,7 +97,8 @@ nav{
 }
 
 #logimg{
-    width: 20%;
+    width: 130px;
+    margin-bottom: 30px;
 }
 #logtxt{
     position: relative;
@@ -113,12 +114,28 @@ nav{
 .bg-color{
     background-color: var(--mainColor);
 }
+.text-color{
+    color: var(--mainColor);
+}
+.btn-color{
+    color: white;
+    background-color: var(--mainColor);
+}
+.btn-outline-color{
+    color: var(--mainColor);
+    border: 1px solid var(--mainColor);
+}
+#loginbtn:hover{
+    color: white !important;
+    background-color: #101d35;
+}
+#signup:hover{
+    color: white !important;
+    background-color: #101d35;
+}
 .cart{
     font-size: 23px;
     margin-left: 10px;
-    color: var(--mainColor);
-}
-.text-color{
     color: var(--mainColor);
 }
 .product_item{
