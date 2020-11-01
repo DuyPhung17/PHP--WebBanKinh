@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Title</title>
+    <title>Mắt Kính Duy Hoàng</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/logo.png">
     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -18,10 +19,10 @@
   </head>
   <body>
     <!----------------------- I. CREATE MENU -->
-    <nav class="navbar navbar-expand-sm navbar-light bg-light sticky-top shadow-lg">                                    
+    <nav class="navbar navbar-expand-sm  sticky-top shadow-lg" id="navbar">                                    
         <!-- Place Logo -->
         <a class="navbar-brand" href="#">
-            <img src="./img/logo.png" height="50px">
+            <img src="./img/logo2.png" id="logo">
         </a>
         <!-- Button Collapse Menu -->
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar_res">
@@ -31,24 +32,24 @@
         <div class="collapse navbar-collapse menu" id="navbar_res">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Trang Chủ</a>
+                    <a class="nav-link active" id="navlink" href="#">Trang Chủ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" class="dropdown">Danh Mục</a>
+                    <a class="nav-link" id="navlink" href="#" class="dropdown">Thương Hiệu</a>
                     <ul class="submenu">
-                        <li><a class="nav-link" href="#">Kính Nam</a></li>
-                        <li><a class="nav-link" href="#">Kính Nữ</a></li>
-                        <li><a class="nav-link" href="#">Khác</a></li>
+                        <li><a class="nav-link" id="navlink" href="#">MOSCOT</a></li>
+                        <li><a class="nav-link" id="navlink" href="#">FLEXON</a></li>
+                        <li><a class="nav-link" id="navlink" href="#">RAY-BAN</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#cont">Liên Hệ</a>
+                    <a class="nav-link" id="navlink" href="#cont">Liên Hệ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="modal" data-target="#login" href="#login">Đăng Nhập</a>
+                    <a class="nav-link" id="navlink" data-toggle="modal" data-target="#login" href="#login">Đăng Nhập</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#cont"><i class="fa fa-shopping-cart cart"></i></a>
+                    <a class="nav-link" id="navlink" href="#cont"><i class="fa fa-shopping-cart cart"></i></a>
                 </li>
             </ul>
         </div>   
@@ -79,9 +80,9 @@
                                         <input type="password" class="form-control" id="pass">
                                     </div>
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue" checked>
-                                        <label class="form-check-label text-color">Remember me</label>
-                                        <a href="#" class="m-5 text-color">Forgot password</a>
+                                        <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue">
+                                        <label class="form-check-label text-color">Ghi nhớ đăng nhập</label>
+                                        <a href="#" class="m-5 text-color">Quên mật khẩu</a>
                                     </div>
                                     <button type="submit" id="loginbtn" class="btn btn-color btn-block mt-3">Login</button>
                                     <button type="submit" id="signup" class="btn btn-outline-color btn-block">Sign Up</button>
@@ -114,7 +115,7 @@
             <div class="carousel-item">
                 <img src="./img/slide2.jpg"  id="slide-after">
                 <div class="carousel-caption">
-                    <h1 class="display-4">BỘ SƯU TẬP MIANVA</h1>
+                    <h1 class="display-4">MẪU KÍNH MỚI TỪ FLEXON</h1>
                     <button type="button" class="btn btn-outline-light btn-md">
                         Xem Thêm
                     </button>
@@ -150,37 +151,37 @@
         </div>
         <div class="row">
             <div class="col-md-3 product_item">
-                <img class="product_image" src="./img/pic1.jpg">
+                <a href="detail.html"><img class="product_image" src="./img/pic13.jpg"></a>
                 <h3 class="text-color">Product Name</h3>
                 <p class="price">2.500.000 VND</p>
                 <button class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </button>
             </div>
             <div class="col-md-3 product_item">
-                <img class="product_image" src="./img/pic3.jpg">
+                <img class="product_image" src="./img/pic12.jpg">
                 <h3 class="text-color">Product Name</h3>
                 <p class="price">2.500.000 VND</p>
                 <button class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </button>
             </div>
             <div class="col-md-3 product_item">
-                <img class="product_image" src="./img/pic2.jpg">
+                <img class="product_image" src="./img/pic11.jpg">
                 <h3 class="text-color">Product Name</h3>
                 <p class="price">2.500.000 VND</p>
                 <button class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </button>
             </div>
             <div class="col-md-3 product_item">
-                <img class="product_image" src="./img/pic5.jpg">
+                <img class="product_image" src="./img/pic10.jpg">
                 <h3 class="text-color">Product Name</h3>
                 <p class="price">2.500.000 VND</p>
                 <button class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </button>
             </div>
             <div class="col-md-3 product_item">
-                <img class="product_image" src="./img/pic2.jpg">
+                <img class="product_image" src="./img/pic9.jpg">
                 <h3 class="text-color">Product Name</h3>
                 <p class="price">2.500.000 VND</p>
                 <button class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </button>
             </div>
             <div class="col-md-3 product_item">
-                <img class="product_image" src="./img/pic1.jpg">
+                <img class="product_image" src="./img/pic8.jpg">
                 <h3 class="text-color">Product Name</h3>
                 <p class="price">2.500.000 VND</p>
                 <button class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </button>
@@ -210,13 +211,19 @@
             <div class="col-md-3 product_item">
                 <img class="product_image" src="./img/pic1.jpg">
                 <h3 class="text-color">Product Name</h3>
-                <p class="price">2.500.000 VND</p>
+                <p class="price">
+                    <del> 2.500.000 VND</del>
+                    <span class="text-danger"> 2.500.000 VND</span>
+                </p>
                 <button class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </button>
             </div>
             <div class="col-md-3 product_item">
                 <img class="product_image" src="./img/pic3.jpg">
                 <h3 class="text-color">Product Name</h3>
-                <p class="price">2.500.000 VND</p>
+                <p class="price">
+                    <del> 2.500.000 VND</del>
+                    <span class="text-danger"> 2.500.000 VND</span>
+                </p>
                 <button class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </button>
             </div>
             <div class="col-md-3 product_item">
