@@ -48,7 +48,7 @@
                     <a class="nav-link" id="navlink" data-toggle="modal" data-target="#login" href="#login">Đăng Nhập</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="navlink" href="#cont"><i class="fa fa-shopping-cart cart"></i></a>
+                    <a class="nav-link" id="navlink" href="cart.php"><i class="fa fa-shopping-cart cart"></i></a>
                 </li>
             </ul>
         </div>   

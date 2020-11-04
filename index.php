@@ -97,7 +97,7 @@
                             <a href="detail.php?id='.$row['id'].'"><img class="product_image" src="./img/'.$row['image'].'"></a>
                             <h3 class="text-color">'.$row['name'].'</h3>
                             <p class="price">'.number_format($row['normal_price']).' VND</p>
-                            <button class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </button>
+                            <a href="cart.php?id='.$row['id'].'"  class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </a>
                         </div>
                         ';
                     }
@@ -131,7 +131,7 @@
                                 <del>'.number_format($row['normal_price']).' VND</del>
                                 <span class="text-danger">'.number_format($row['sale_price']).' VND</span>
                             </p>
-                            <button class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </button>
+                            <a href="cart.php?id='.$row['id'].'" class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i></a>
                         </div>
                         ';
                     }
@@ -140,7 +140,7 @@
         </div>
         </div>    
     </div>
-  
+                
 
 <!----------------------- VII. Contact -->
 <br id="cont">
