@@ -11,3 +11,7 @@ function scrollFunction() {
     document.getElementById("logo").style.height = "50px";
   }
 }
+
+$(document).ready(function () {
+  $.lockfixed("#sidebar", {offset: {top: 4, bottom: 4} });
+ });
