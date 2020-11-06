@@ -11,6 +11,12 @@
 body{
     background-color: var(--bgColor);
 }
+.avt{
+    height: 30px !important;
+    width: 30px !important;
+    margin-left: 10px;
+    border-radius: 50%;
+}
 .navbar{
     background-color: var(--mainColor);
 }

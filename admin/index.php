@@ -1,6 +1,8 @@
 <?php 
     session_start();
     require_once('permission.php');
+    if(isset($_GET['page']))
+        $page = $_GET['page'];
 ?>
 <!doctype html>
 <html lang="en">
@@ -20,7 +22,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="code.js"></script>
+    <script src="../code.js"></script>
   </head>
   <body>
       
@@ -34,7 +36,7 @@
     <nav class="navbar navbar-expand-sm sticky-top" id="navbar">                                    
         <!-- Place Logo -->
         <a class="navbar-brand" href="index.php">
-            <img height="40px" src="../img/logo2.png" id="logo">
+            <img height="25px" src="../img/logo2.png" id="logo">
             <span>TRANG QUẢN TRỊ</span>
         </a>
         <!-- Button Collapse Menu -->
@@ -47,7 +49,7 @@
             <?php 
                 echo '
                 <li class="nav-item">
-                    <a class="nav-link active" id="navlink" href="#"><i id="qtv">Quản trị viên: </i>'.$_SESSION['name'].'<img class="ml-4" height="30px" src="../img/avatar.png"></a>
+                    <a class="nav-link active" id="navlink" href="#"><i id="qtv">Quản trị viên: </i>'.$_SESSION['name'].'<img class="avt ml-4" src="../img/'.$_SESSION['img'].'"></a>
                 </li>
                 ';
                 ?>
@@ -60,13 +62,28 @@
     <div class="col-2">
         <nav class="sidebar sticky-left">
             <ul style="list-style:none;" class="rounded">
-                <li class=""><a href="brand.php?id=7"><i class="fas fa-glasses"></i>Sản Phẩm</a></li>
-                <li class=""><a href="brand.php?id=1"><i class="fas fa-copyright"></i> Thương Hiệu</a></li>
-                <li class=""><a href="brand.php?id=3"><i class="fa fa-user"></i> Tài Khoản</a></li>
-                <li class=""><a href="brand.php?id=3"><i class="fas fa-box-open"></i> Đơn Đặt Hàng</a></li>
+                <li class=""><a href="index.php"><i class="fa fa-home"></i> Trang chủ</a></li>
+                <li class=""><a href="index.php?page=p"><i class="fas fa-glasses"></i>Sản Phẩm</a></li>
+                <li class=""><a href="index.php?page=b"><i class="fas fa-copyright"></i> Thương Hiệu</a></li>
+                <li class=""><a href="index.php?page=a"><i class="fa fa-user"></i> Tài Khoản</a></li>
+                <li class=""><a href="index.php?page=c"><i class="fas fa-box-open"></i> Đơn Đặt Hàng</a></li>
                 <li class="logout"><a href="../logout.php"><i class="fa fa-sign-out"></i> Đăng xuất</a></li>
             </ul>
         </nav>
+    </div>
+    <div class="col-10">
+        <?php 
+            if(isset($page))
+            {
+                switch($page){
+                    case 'p': include('product/product.php');break;
+                    case 'pa': include('product/add.php');break;
+                    case 'b': include('brand.php');break;
+                    case 'a': include('account.php');break;
+                }
+            }
+            else include('home.php');
+        ?>
     </div>
     </div>
 

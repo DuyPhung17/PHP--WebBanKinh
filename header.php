@@ -18,6 +18,7 @@
             $_SESSION['name'] = $row['name'];
             $_SESSION['phone'] = $row['phone'];
             $_SESSION['addr'] = $row['addr'];
+            $_SESSION['img'] = $row['image'];
             if($row['admin']==1)  
                 header('location: admin/index.php');
             else header('location: index.php');
@@ -50,9 +51,7 @@
                     <a class="nav-link" id="navlink" href="#cont">Liên Hệ</a>
                 </li>
                 <?php 
-                    if(isset($_SESSION['adm']))
-                    {
-                        if($_SESSION['adm']!=1)
+                    if(isset($_SESSION['name']))
                     echo '
                     <li class="nav-item">
                         <a class="nav-link" id="navlink" href="logout.php">Đăng Xuất</a>
@@ -61,9 +60,9 @@
                         <a class="nav-link" id="navlink" href="cart.php"><i class="fa fa-shopping-cart cart"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" id="navlink" href="#">'.$_SESSION['name'].'<img class="ml-2" height="30px" src="img/avatar.png"></a>
+                        <a class="nav-link active" id="navlink" href="#">'.$_SESSION['name'].'<img class="ml-2 avt" height="30px" src="img/'.$_SESSION['img'].'"></a>
                     </li>
-                    ';}
+                    ';
                     else echo '
                     <li class="nav-item">
                         <a class="nav-link" id="navlink" data-toggle="modal" data-target="#login" href="#login">Đăng Nhập</a>

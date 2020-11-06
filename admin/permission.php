@@ -6,7 +6,9 @@
         $adm = $_SESSION['adm'];
         if($adm == 0)
         {
-            echo'ko đủ quyền';
+            echo'<script language="javascript">
+            alert("Truy cập vào trang quản trị không hợp lệ !")
+            </script>';
             exit();
         }
     }

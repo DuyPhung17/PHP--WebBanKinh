@@ -11,6 +11,35 @@
 body{
     background-color: var(--bgColor);
 }
+/*home*/
+.home{
+    margin: 130px;
+}
+.home_adm{
+    display: flex;
+}
+.home_adm p{
+    font-size: 70px;
+    color: var(--mainColor);
+    font-weight: bold;
+    margin-left: 20px;
+}
+.avt_home{
+    height: 70px !important;
+    width: 130px !important;
+    border-radius: 50%;
+}
+.avt{
+    height: 40px !important;
+    width: 40px !important;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+.avt_user{
+    height: 50px !important;
+    width: 50px !important;
+    border-radius: 50%;
+}
 #qtv{
     font-size: 13px;
     margin-right: 10px;
@@ -20,6 +49,7 @@ body{
 }
 span{
     color: var(--bgColor);
+    font-size: 15px;
 }
 .nav-item{
     margin-left: 15px;
@@ -39,15 +69,14 @@ span{
 .sidebar{
     margin-left: 0px;
     height: 580px;
-    background-color: var(--mainColor);
+    background-color: #101d35;
 }
 .sidebar ul{
     padding-left: 0;
-    padding-top: 20px;
 }
 .logout a{
-    margin-top: 240px;
-    background-color: #101d35 !important;
+    margin-top: 180px;
+    background-color: var(--mainColor) !important;
 }
 i{
     font-size: 15px;
@@ -58,11 +87,11 @@ i{
     display: block;
     padding: 20px;
     text-decoration: none;
-    background-color: var(--mainColor);
+    background-color: #101d35;
 }
 .sidebar ul li a:hover{
     transition: 0.3s;
-    background-color: #101d35;
+    background-color: var(--mainColor);
     color: var(--bgColor);
 }
 .page-item.active .page-link {
@@ -82,4 +111,31 @@ i{
     color: var(--bgColor);
     background-color: #101d35;
     border-color: var(--mainColor);
+}
+.bg-color{
+    background-color: var(--mainColor);
+}
+.btn-color{
+    color: white;
+    background-color: var(--mainColor);
+}
+.btn-color:hover{
+    color: white;
+    background-color: #101d35;
+}
+.btn-outline-color{
+    color: var(--mainColor);
+    border: 1px solid var(--mainColor);
+}
+img{
+    max-width: 70px !important;
+    height: auto;
+}
+#id_prv{
+    height: 150px;
+}
+.top{
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
 }
