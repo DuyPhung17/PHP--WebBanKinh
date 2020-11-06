@@ -1,7 +1,7 @@
 <?php 
+
     require_once('db_config/db_connect.php');
 
-    session_start();
     if(isset($_POST['login']))
     {
         $usn = $_POST['usn'];
@@ -15,18 +15,23 @@
             $_SESSION['usn'] = $row['username'];
             $_SESSION['pwd'] = $row['password'];
             $_SESSION['adm'] = $row['admin'];
+            $_SESSION['name'] = $row['name'];
+            $_SESSION['phone'] = $row['phone'];
+            $_SESSION['addr'] = $row['addr'];
             if($row['admin']==1)  
                 header('location: admin/index.php');
-            else header('location: admin/index.php');
+            else header('location: index.php');
         }
-        else echo 'Sai usn hoặc pwd';
+        else echo '<script language="javascript">
+            alert("Tên đăng nhập hoặc Mật khẩu không đúng")
+            </script>';
     }
 ?>
 
 <nav class="navbar navbar-expand-sm  sticky-top shadow-lg" id="navbar">                                    
         <!-- Place Logo -->
-        <a class="navbar-brand" href="#">
-            <img src="./img/logo2.png" id="logo">
+        <a class="navbar-brand" href="index.php">
+            <img height="50px" src="./img/logo2.png" id="logo">
         </a>
         <!-- Button Collapse Menu -->
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar_res">
@@ -44,12 +49,31 @@
                 <li class="nav-item">
                     <a class="nav-link" id="navlink" href="#cont">Liên Hệ</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="navlink" data-toggle="modal" data-target="#login" href="#login">Đăng Nhập</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="navlink" href="cart.php"><i class="fa fa-shopping-cart cart"></i></a>
-                </li>
+                <?php 
+                    if(isset($_SESSION['adm']))
+                    {
+                        if($_SESSION['adm']!=1)
+                    echo '
+                    <li class="nav-item">
+                        <a class="nav-link" id="navlink" href="logout.php">Đăng Xuất</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="navlink" href="cart.php"><i class="fa fa-shopping-cart cart"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" id="navlink" href="#">'.$_SESSION['name'].'<img class="ml-2" height="30px" src="img/avatar.png"></a>
+                    </li>
+                    ';}
+                    else echo '
+                    <li class="nav-item">
+                        <a class="nav-link" id="navlink" data-toggle="modal" data-target="#login" href="#login">Đăng Nhập</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="navlink" href="cart.php"><i class="fa fa-shopping-cart cart"></i></a>
+                    </li>
+                    ';
+                ?>
+                
             </ul>
         </div>   
     </nav>

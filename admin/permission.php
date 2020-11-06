@@ -1,6 +1,6 @@
 <?php 
     if (!isset($_SESSION['adm'])) {
-        header('Location: user.php');
+        header('Location: ../index.php');
     }
     else{
         $adm = $_SESSION['adm'];

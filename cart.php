@@ -1,23 +1,32 @@
 <?php 
-    $id = $_GET['id'];
-    $i = 0;
-    require_once('db_config/db_connect.php');
-
-    $sql = 'Select glasses.name as gname, glasses.image as gimage, normal_price, sale_price, brand.image as bimage
-            from glasses join brand
-            on glasses.id_brand = brand.id 
-            where glasses.id = '.$id;
-    $result = mysqli_query($conn,$sql);
-    if(mysqli_num_rows($result) > 0)
+    //Kiem tra so luong sp trong cart
+    if(isset($_SESSION))
     {
-        $row = mysqli_fetch_array($result);
-        $i++;
+        session_destroy();
+        session_start();
+    }
+    if(!isset($_SESSION['cart']))
+        $cart = $_SESSION['cart'] = array();
+    if(isset($_GET['id']))
+    {
+        $id = $_GET['id'];
+        require_once('db_config/db_connect.php');
+        $sql = 'Select glasses.name as gname, glasses.image as gimage, normal_price, sale_price, brand.image as bimage
+                from glasses join brand
+                on glasses.id_brand = brand.id 
+                where glasses.id = '.$id;
+        $result = mysqli_query($conn,$sql);
+        if(mysqli_num_rows($result) > 0)
+        {
+            $row = mysqli_fetch_array($result);
+            $cart[] = $row;
+        }
     }
 ?>
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Thông Tin Sản Phẩm</title>
+        <title>Giỏ Hàng</title>
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -31,7 +40,7 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        <script src="code.js"></script>
+        <!-- <script src="code.js"></script> -->
       </head>
   <body>
       
@@ -42,9 +51,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <!----------------------- I. Header -->
-    <?php include('header.php') ?>
-
-
+    <?php 
+        session_start();
+        include('header.php');
+    ?>   
 
     <!--Glasses on cart-->
     <div class="container detail">
@@ -63,9 +73,12 @@
                 </thead>
                 <tbody>
                     <?php 
+                        if(!isset($id))
+                            echo '<tr><td colspan="7" align="center"><h5>Bạn chưa thêm mặt hàng nào !<h5></td></tr>';
+                        else
                         echo '
                         <tr>
-                            <td>'.$i.'</td>
+                            <td>1</td>
                             <td><img height="40px" src="img/'.$row['gimage'].'"/> '.$row['gname'].'</td>
                             <td><img height="40px" src="img/'.$row['bimage'].'"/></td>
                             <td>'.number_format($row['normal_price']).'</td>
@@ -78,10 +91,13 @@
                         </tr>
                         ';
                     ?>
+                    <tr class="text-color">
+                        <td colspan="5" align="right"><h5>Tổng cộng: </h5></td>
+                        <td colspan="2"><h5>1000000</h5></td>
+                    </tr>
                 </tbody>
             </table>
             <div>
-                <p class="">Tổng cộng: 10000000</p>
                 <a class="btn btn-sm btn-color" href="#">Mua hàng</a>
             </div>
 
