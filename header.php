@@ -23,9 +23,7 @@
                 header('location: admin/index.php');
             else header('location: index.php');
         }
-        else echo '<script language="javascript">
-            alert("Tên đăng nhập hoặc Mật khẩu không đúng")
-            </script>';
+        else echo '<script type="text/javascript">swal("Đăng nhập thất bại!", "Tên đăng nhập hoặc mật khẩu không đúng !", "error");</script>';
     }
 ?>
 
@@ -51,6 +49,7 @@
                     <a class="nav-link" id="navlink" href="#cont">Liên Hệ</a>
                 </li>
                 <?php 
+                if(isset($_SESSION['usn'])) echo '<script type="text/javascript">swal("Đăng nhập thành công!","Chào mừng '.$_SESSION['name'].' quay trở lại","success");</script>';
                     if(isset($_SESSION['name']))
                     echo '
                     <li class="nav-item">

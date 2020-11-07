@@ -44,27 +44,26 @@
         $errSale_price = "giá khuyến mãi phải nhỏ hơn đơn giá!";
     }
     //Kiem Tra img
-    if(isset($_POST['img']))
+    if(isset($_FILES['img']))
     {
-      $img = $_POST['img'];
-      if($img=="")
-        $errImg = "Chưa thêm ảnh sản phẩm";
+        $img = $_FILES['img']['name'];
+        $target_dir = "../img/";
+        $target_file = $target_dir . basename($img);
+        move_uploaded_file($_FILES['img']['tmp_name'],$target_file);
     }
-
     //add new
-    if(empty($errName) && empty($errBrand) && empty($errNormal_price) && empty($errSale_price) && empty($errImg))
+    if(empty($errName) && empty($errBrand) && empty($errNormal_price) && empty($errSale_price))
     {
       $sql = 'insert into glasses(name,id_brand,image,normal_price,sale_price)
-              values("'.$name.'",'.$brand.',"panda.png",'.$normal_price.','.$sale_price.')';
+              values("'.$name.'",'.$brand.',"'.$img.'",'.$normal_price.','.$sale_price.')';
       $result = mysqli_query($conn, $sql);
-      echo '<script type="text/javascript">swal("Good job!", "Thêm thành công!", "success");</script>';
+      echo '<script type="text/javascript">swal("Thêm thành công!", "Sản phẩm mới: '.$name.'", "success");</script>';
     }
   }
 
 ?>
 <div class="mt-4">
     <h3 class=" text-center mb-4">- Thêm sản phẩm -</h3>
-
     <form action="" method="post" enctype="multipart/form-data" style="width:50%;margin-left:20%">
     
         <div class="form-group row">
@@ -165,7 +164,7 @@
           <div class="col-sm-8 pl-0 pt-3">
             <input class="btn btn-color" type="submit" name="submit" value="Thêm">
             <button class="btn btn-secondary" type="reset">Đặt lại</button>
-            <a href="../index.php" class="btn btn-danger">Trở Về</a>
+            <a href="index.php?page=p" class="btn btn-danger">Trở Về</a>
           </div>
         </div>
 

@@ -67,6 +67,7 @@
                 <li class=""><a href="index.php?page=b"><i class="fas fa-copyright"></i> Thương Hiệu</a></li>
                 <li class=""><a href="index.php?page=a"><i class="fa fa-user"></i> Tài Khoản</a></li>
                 <li class=""><a href="index.php?page=c"><i class="fas fa-box-open"></i> Đơn Đặt Hàng</a></li>
+                <li class=""><a href="index.php?page=c"><i class="fas fa-clipboard"></i> Hóa Đơn</a></li>
                 <li class="logout"><a href="../logout.php"><i class="fa fa-sign-out"></i> Đăng xuất</a></li>
             </ul>
         </nav>
@@ -78,7 +79,8 @@
                 switch($page){
                     case 'p': include('product/product.php');break;
                     case 'pa': include('product/add.php');break;
-                    case 'b': include('brand.php');break;
+                    case 'b': include('brand/brand.php');break;
+                    case 'ba': include('brand/add.php');break;
                     case 'a': include('account.php');break;
                 }
             }
