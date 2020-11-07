@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2020 at 05:44 PM
+-- Generation Time: Nov 07, 2020 at 04:49 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -35,16 +35,20 @@ CREATE TABLE `account` (
   `admin` bit(1) DEFAULT NULL,
   `phone` varchar(20) COLLATE utf8_vietnamese_ci DEFAULT NULL,
   `address` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `image` varchar(50) COLLATE utf8_vietnamese_ci DEFAULT NULL
+  `image` varchar(50) COLLATE utf8_vietnamese_ci DEFAULT 'avatar.png',
+  `email` varchar(50) COLLATE utf8_vietnamese_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
 -- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`id`, `name`, `username`, `password`, `admin`, `phone`, `address`, `image`) VALUES
-(1, 'Phùng Bá Duy', 'duy', '123', b'1', '0986858382', '14 Ngọc Thảo, Nha Trang', NULL),
-(2, 'Nguyễn Xuân Huy', 'huy', '123', NULL, '0916858382', 'Ninh Thuận', NULL);
+INSERT INTO `account` (`id`, `name`, `username`, `password`, `admin`, `phone`, `address`, `image`, `email`) VALUES
+(1, 'Phùng Bá Duy', 'duy', '123', b'1', '0986858382', '14 Ngọc Thảo, Nha Trang', 'panda.png', 'duyphung@gmail.com'),
+(2, 'Nguyễn Xuân Huy', 'huy', '123', NULL, '0916858382', 'Ninh Thuận', 'avatar.png', 'springhuy@gmail.com'),
+(3, 'Diệp Túy Dũng', 'dung', '123', NULL, '0913320382', 'Cam Ranh', 'avatar.png', 'dunglu@gmail.com'),
+(4, 'Nguyễn Ngọc Hoàng', 'hoang', '123', NULL, '0913320382', 'Phú Yên', 'avatar.png', 'hoangdiem@gmail.com'),
+(5, 'Vũ Ngọc Đoàn', 'doan', '123', NULL, '01625320382', 'Nha Trang', 'avatar.png', 'doanmelodit@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -113,24 +117,25 @@ INSERT INTO `bill_detail` (`id`, `id_bill`, `id_product`, `quantity`, `unit_pric
 CREATE TABLE `brand` (
   `id` int(11) NOT NULL,
   `name` varchar(50) COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `image` varchar(100) COLLATE utf8_vietnamese_ci DEFAULT NULL
+  `image` varchar(100) COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `country` varchar(50) COLLATE utf8_vietnamese_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
 -- Dumping data for table `brand`
 --
 
-INSERT INTO `brand` (`id`, `name`, `image`) VALUES
-(1, 'Coach', 'coach.png'),
-(2, 'Dolce & Gabbana', 'd&g.png'),
-(3, 'Fendi', 'fendi.png'),
-(4, 'Maui Jim', 'mauijim.png'),
-(5, 'Oakley', 'oakley.png'),
-(6, 'Prada', 'prada.png'),
-(7, 'Ray-Ban', 'rayban.png'),
-(8, 'Saint Laurent', 'saint.png'),
-(9, 'Tory Burch', 'tory.png'),
-(10, 'Versace', 'versace.png');
+INSERT INTO `brand` (`id`, `name`, `image`, `country`) VALUES
+(1, 'Coach', 'coach.png', 'Mỹ'),
+(2, 'Dolce & Gabbana', 'd&g.png', 'Ý'),
+(3, 'Fendi', 'fendi.png', 'Ý'),
+(4, 'Maui Jim', 'mauijim.png', 'Mỹ'),
+(5, 'Oakley', 'oakley.png', 'Mỹ'),
+(6, 'Prada', 'prada.png', 'Ý'),
+(7, 'Ray-Ban', 'rayban.png', 'Mỹ'),
+(8, 'Saint Laurent', 'saint.png', 'Pháp'),
+(9, 'Tory Burch', 'tory.png', 'Mỹ'),
+(10, 'Versace', 'versace.png', 'Ý');
 
 -- --------------------------------------------------------
 
@@ -145,7 +150,7 @@ CREATE TABLE `glasses` (
   `image` varchar(100) COLLATE utf8_vietnamese_ci DEFAULT NULL,
   `normal_price` int(11) DEFAULT NULL,
   `sale_price` int(20) DEFAULT NULL,
-  `rating` smallint(11) DEFAULT NULL,
+  `rating` smallint(11) DEFAULT 4,
   `new` bit(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
@@ -273,7 +278,7 @@ ALTER TABLE `glasses`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `bills`
@@ -291,13 +296,13 @@ ALTER TABLE `bill_detail`
 -- AUTO_INCREMENT for table `brand`
 --
 ALTER TABLE `brand`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `glasses`
 --
 ALTER TABLE `glasses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- Constraints for dumped tables
@@ -307,7 +312,7 @@ ALTER TABLE `glasses`
 -- Constraints for table `glasses`
 --
 ALTER TABLE `glasses`
-  ADD CONSTRAINT `glasses_ibfk_1` FOREIGN KEY (`id_brand`) REFERENCES `brand` (`id`);
+  ADD CONSTRAINT `glasses_ibfk_1` FOREIGN KEY (`id_brand`) REFERENCES `brand` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

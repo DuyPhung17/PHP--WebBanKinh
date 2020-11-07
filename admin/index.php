@@ -81,7 +81,7 @@
                     case 'pa': include('product/add.php');break;
                     case 'b': include('brand/brand.php');break;
                     case 'ba': include('brand/add.php');break;
-                    case 'a': include('account.php');break;
+                    case 'a': include('account/account.php');break;
                 }
             }
             else include('home.php');
