@@ -79,6 +79,7 @@
                 switch($page){
                     case 'p': include('product/product.php');break;
                     case 'pa': include('product/add.php');break;
+                    case 'pu': include('product/update.php');break;
                     case 'b': include('brand/brand.php');break;
                     case 'ba': include('brand/add.php');break;
                     case 'a': include('account/account.php');break;

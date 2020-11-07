@@ -1,10 +1,18 @@
 <?php 
     require_once('../db_config/db_connect.php');
 
-    $sql = 'Select glasses.name as gname, glasses.image as gimage, normal_price, sale_price, brand.image as bimage
+    $sql = 'Select glasses.id as gid, glasses.name as gname, glasses.image as gimage, normal_price, sale_price, brand.image as bimage
                 from glasses join brand
                 on glasses.id_brand = brand.id';
     $result = mysqli_query($conn,$sql);
+
+    if(isset($_GET['id']))
+    {
+        $id = $_GET['id'];
+        $sql_del = $sql = 'delete from glasses where id='.$id;
+        mysqli_query($conn,$sql_del);
+    }
+
 ?>
 
 <div class="container detail">
@@ -42,8 +50,8 @@
                     <td>'.number_format($row['normal_price']).' VND</td>
                     <td class="text-danger">'.$sale_price.'</td>
                     <td>
-                        <a class="btn btn-sm btn-secondary" href="#">Cập nhật</a>
-                        <a class="btn btn-sm btn-secondary" href="#">Xóa</a>
+                        <a class="btn btn-sm btn-secondary" href="index.php?page=pu&id='.$row['gid'].'">Cập nhật</a>
+                        <a class="btn btn-sm btn-danger" href="product/product.php?id='.$row['gid'].'">Xóa</a>
                     </td>
                 </tr>
                 ';

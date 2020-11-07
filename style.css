@@ -72,7 +72,10 @@ nav{
         top: 20%;
     }
 }
-
+span{
+    font-size: 70px !important;
+    padding: 10px !important;
+}
 #hra{
     border-top: 3px solid var(--mainColor);
     width: 40%;

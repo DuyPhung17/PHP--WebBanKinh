@@ -99,7 +99,7 @@
                         echo '
                         <div class="col-md-3 product_item">
                             <a href="detail.php?id='.$row['id'].'"><img class="product_image" src="./img/'.$row['image'].'"></a>
-                            <h3 class="text-color">'.$row['name'].'</h3>
+                            <h3 class="text-color">'.$row['name'].'<span><h4 class="badge badge-danger">Mới</h4></span></h3>
                             <p class="price">'.number_format($row['normal_price']).' VND</p>
                             <a href="cart.php?id='.$row['id'].'"  class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </a>
                         </div>

@@ -37,7 +37,7 @@
                     <td>'.$row['qty'].'</td>
                     <td>
                         <a class="btn btn-sm btn-secondary" href="#">Cập nhật</a>
-                        <a class="btn btn-sm btn-secondary" href="#">Xóa</a>
+                        <a class="btn btn-sm btn-danger" href="#">Xóa</a>
                     </td>
                 </tr>
                 ';
