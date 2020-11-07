@@ -1,6 +1,6 @@
 :root{
     --mainColor:#203864;
-    --bgColor:#eff1f0;
+    --bgColor:white;
 }
 *{
     font-family: Bahnschrift Light;
@@ -10,6 +10,7 @@
 }
 body{
     background-color: var(--bgColor);
+    position: relative;
 }
 .avt{
     height: 30px !important;
@@ -72,9 +73,12 @@ nav{
         top: 20%;
     }
 }
-span{
-    font-size: 70px !important;
-    padding: 10px !important;
+.badge{
+    font-size: 20px !important;
+    float: right;
+    margin-right: 30px;
+    margin-bottom: 0px;
+    z-index: 1;
 }
 #hra{
     border-top: 3px solid var(--mainColor);
@@ -231,7 +235,8 @@ span{
 .sidebar ul li a{
     color: var(--bgColor);
     display: block;
-    padding: 13px;
+    font-size: 20px;
+    padding: 25px;
     text-decoration: none;
     background-color: var(--mainColor);
 }
@@ -263,4 +268,21 @@ span{
     background-color: #101d35;
     border-color: var(--mainColor);
 }
+
+/*Search*/
+.search{
+    margin-top: 30px;
+}
+.search form{
+   margin: auto;
+   width: 40%;
+}
+.search form input{
+    height: 40px;
+}
+.search form input:focus{
+    border: 1px solid var(--mainColor);
+  box-shadow: 0 0 0 1px var(--mainColor);
+}
+/*footer*/
 

@@ -1,10 +1,9 @@
-<?php 
+<?php
+    session_start();
     //Kiem tra so luong sp trong cart
-    if(isset($_SESSION))
-    {
-        session_destroy();
-        session_start();
-    }
+    if(!isset($_SESSION['name']))
+        header('location: index.php?fail=1');
+
     if(!isset($_SESSION['cart']))
         $cart = $_SESSION['cart'] = array();
     if(isset($_GET['id']))
@@ -52,7 +51,6 @@
 
     <!----------------------- I. Header -->
     <?php 
-        session_start();
         include('header.php');
     ?>   
 

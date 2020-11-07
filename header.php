@@ -21,7 +21,7 @@
             $_SESSION['img'] = $row['image'];
             if($row['admin']==1)  
                 header('location: admin/index.php');
-            else header('location: index.php');
+            else header('location: index.php?scs=1');
         }
         else echo '<script type="text/javascript">swal("Đăng nhập thất bại!", "Tên đăng nhập hoặc mật khẩu không đúng !", "error");</script>';
     }
@@ -43,13 +43,12 @@
                     <a class="nav-link active" id="navlink" href="index.php">Trang Chủ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="navlink" href="brand.php?id=7">Thương Hiệu</a>
+                    <a class="nav-link" id="navlink" href="brand.php?id=7&pg=1">Sản Phẩm</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="navlink" href="#cont">Liên Hệ</a>
+                    <a class="nav-link" id="navlink" href="search.php">Tìm Kiếm</a>
                 </li>
                 <?php 
-                if(isset($_SESSION['usn'])) echo '<script type="text/javascript">swal("Đăng nhập thành công!","Chào mừng '.$_SESSION['name'].' quay trở lại","success");</script>';
                     if(isset($_SESSION['name']))
                     echo '
                     <li class="nav-item">

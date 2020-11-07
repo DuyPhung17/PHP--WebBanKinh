@@ -2,10 +2,21 @@
     $id = $_GET['id'];
     require_once('db_config/db_connect.php');
 
+    //Phan trang
+    $sql_qty = 'select count(id) as qty from glasses where id_brand ='.$id;
+    $result_qty = mysqli_query($conn,$sql_qty);
+    $row = mysqli_fetch_array($result_qty);
+    $total_Product = $row['qty']; //Tong so san pham
+    $product_perPage = 5;//So san pham tren 1 trang
+    $total_Page = ceil($total_Product / $product_perPage);//tong so trang
+    if(isset($_GET['pg']))
+        $current_Page = $_GET['pg'];//Trang hien tai
+    $index = ($current_Page - 1)*$product_perPage; //Vi tri bat dau lay trong $sql LIMIT
+
     $sql = 'Select glasses.id as gid, glasses.name as gname, glasses.image, normal_price, sale_price, rating, brand.image as bimage, id_brand 
             from glasses join brand
             on glasses.id_brand = brand.id 
-            where glasses.id_brand = '.$id;
+            where glasses.id_brand = '.$id.' limit '.$index.', '.$product_perPage.'';
     $result = mysqli_query($conn,$sql);
 
     $sql_brandimage = 'select image from brand where id='.$id;
@@ -52,16 +63,16 @@
             <div class="col-3">
                 <nav class="sidebar" id="sidebar">
                     <ul style="list-style:none;" class="rounded">
-                        <li class="sb_active"><a href="brand.php?id=7"> Ray-Ban</a></li>
-                        <li class=""><a href="brand.php?id=1"> Coach</a></li>
-                        <li class=""><a href="brand.php?id=3"> Fendi</a></li>
-                        <li class=""><a href="brand.php?id=4"> Maui Jim</a></li>
-                        <li class=""><a href="brand.php?id=2"> Dolce & Gabbana</a></li>
-                        <li class=""><a href="brand.php?id=8"> Saint Laurent</a></li>
-                        <li class=""><a href="brand.php?id=5"> Oakley</a></li>
-                        <li class=""><a href="brand.php?id=6"> Prada</a></li>
-                        <li class=""><a href="brand.php?id=10"> Versace</a></li>
-                        <li class=""><a href="brand.php?id=9"> Tory Burch</a></li>
+                        <li class="sb_active"><a href="brand.php?id=7&pg=1"> Ray-Ban</a></li>
+                        <li class=""><a href="brand.php?id=1&pg=1"> Coach</a></li>
+                        <li class=""><a href="brand.php?id=3&pg=1"> Fendi</a></li>
+                        <li class=""><a href="brand.php?id=4&pg=1"> Maui Jim</a></li>
+                        <li class=""><a href="brand.php?id=2&pg=1"> Dolce & Gabbana</a></li>
+                        <li class=""><a href="brand.php?id=8&pg=1"> Saint Laurent</a></li>
+                        <li class=""><a href="brand.php?id=5&pg=1"> Oakley</a></li>
+                        <li class=""><a href="brand.php?id=6&pg=1"> Prada</a></li>
+                        <li class=""><a href="brand.php?id=10&pg=1"> Versace</a></li>
+                        <li class=""><a href="brand.php?id=9&pg=1"> Tory Burch</a></li>
                     </ul>
                 </nav>
             </div>
@@ -95,16 +106,42 @@
                     }
                 ?>
                 </div>
-                                                    
-            <nav>
-                <ul class="pagination">
-                  <li class="page-item"><a class="page-link" href="#">Trước</a></li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#">Sau</a></li>
+                
+                <!--Phan trang-->
+                <ul class="pagination mx-auto" style="width: 30%">
+                    <?php 
+                        //Gan nut truoc
+                        if($_GET['pg']>1)
+                            echo '        
+                            <li class="page-item">
+                                <a class="page-link" href="?id='.$id.'&pg='.($_GET['pg']-1).'">Trước</a>
+                            </li>';
+                        else echo '        
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#">Trước</a>
+                            </li>';
+                        //Gan cac trang
+                        for($i=1;$i<=$total_Page;$i++)
+                        {   
+                            if($i==$_GET['pg'])
+                            echo '        
+                            <li class="page-item active">
+                                <a class="page-link" href="?id='.$id.'&pg='.$i.'">'.$i.'<span class="sr-only">(current)</span></a>
+                            </li>';
+                            else echo '<li class="page-item"><a class="page-link" href="?id='.$id.'&pg='.$i.'">'.$i.'</a></li>';
+                        }
+                        //Gan nut sau
+                        if($_GET['pg']<$total_Page)
+                            echo '        
+                            <li class="page-item">
+                                <a class="page-link" href="?id='.$id.'&pg='.($_GET['pg']+1).'">Sau</a>
+                            </li>';
+                        else echo '        
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#">Sau</a>
+                            </li>';
+                    ?>
                 </ul>
-              </nav>
             </div>
         </div>
     </div>

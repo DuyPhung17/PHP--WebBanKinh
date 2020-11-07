@@ -1,9 +1,20 @@
 <?php 
     require_once('../db_config/db_connect.php');
 
+    //Phan trang
+    $sql_qty = 'select count(id) as qty from glasses';
+    $result_qty = mysqli_query($conn,$sql_qty);
+    $row = mysqli_fetch_array($result_qty);
+    $total_Product = $row['qty']; //Tong so san pham
+    $product_perPage = 6;//So san pham tren 1 trang
+    $total_Page = ceil($total_Product / $product_perPage);//tong so trang
+    if(isset($_GET['pg']))
+        $current_Page = $_GET['pg'];//Trang hien tai
+    $index = ($current_Page - 1)*$product_perPage; //Vi tri bat dau lay trong $sql LIMIT
+    
     $sql = 'Select glasses.id as gid, glasses.name as gname, glasses.image as gimage, normal_price, sale_price, brand.image as bimage
                 from glasses join brand
-                on glasses.id_brand = brand.id';
+                on glasses.id_brand = brand.id limit '.$index.', '.$product_perPage.'';
     $result = mysqli_query($conn,$sql);
 
     if(isset($_GET['id']))
@@ -59,6 +70,43 @@
             ?>
         </tbody>
     </table>
+    
+    <!--Phan trang-->
+    <ul class="pagination mx-auto" style="width: 50%">
+        <?php 
+            //Gan nut truoc
+            if($_GET['pg']>1)
+                echo '        
+                <li class="page-item">
+                    <a class="page-link" href="?page=p&pg='.($_GET['pg']-1).'">Trước</a>
+                </li>';
+            else echo '        
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">Trước</a>
+                </li>';
+            //Gan cac trang
+            for($i=1;$i<=$total_Page;$i++)
+            {   
+                if($i==$_GET['pg'])
+                echo '        
+                <li class="page-item active">
+                    <a class="page-link" href="?page=p&pg='.$i.'">'.$i.'<span class="sr-only">(current)</span></a>
+                </li>';
+                else echo '<li class="page-item"><a class="page-link" href="?page=p&pg='.$i.'">'.$i.'</a></li>';
+            }
+            //Gan nut sau
+            if($_GET['pg']<$total_Page)
+                echo '        
+                <li class="page-item">
+                    <a class="page-link" href="?page=p&pg='.($_GET['pg']+1).'">Sau</a>
+                </li>';
+            else echo '        
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">Sau</a>
+                </li>';
+        ?>
+    </ul>
+
 </div>
 
 <?php 

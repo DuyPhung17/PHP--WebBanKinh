@@ -33,7 +33,11 @@
     <!----------------------- I. CREATE MENU -->
     <?php
         session_start();
+        if(isset($_GET['fail']))
+            echo '<script type="text/javascript">swal("Chức năng giỏ hàng cần đăng nhập !", "Nếu chưa có tài khoản hãy đăng ký !", "error");</script>';
         include('header.php');
+        if(isset($_GET['scs']))
+            echo '<script type="text/javascript">swal("Đăng nhập thành công!","Chào mừng '.$_SESSION['name'].' quay trở lại","success");</script>';
     ?>
 
     <!----------------------- II. CREATE CAROUSEL -->
@@ -57,9 +61,8 @@
                 <img src="./img/slide2.jpg"  id="slide-after">
                 <div class="carousel-caption">
                     <h1 class="display-4">MẪU KÍNH MỚI TỪ RAY-BAN</h1>
-                    <button type="button" class="btn btn-outline-light btn-md">
-                        Xem Thêm
-                    </button>
+                    <a type="button" class="btn btn-outline-light btn-md" href="brand.php?id=7">
+                        Xem Thêm</a>
                 </div>
             </div>
             <div class="carousel-item">
@@ -98,8 +101,9 @@
                     {
                         echo '
                         <div class="col-md-3 product_item">
+                            <h4 class="badge badge-danger">Mới</h4>
                             <a href="detail.php?id='.$row['id'].'"><img class="product_image" src="./img/'.$row['image'].'"></a>
-                            <h3 class="text-color">'.$row['name'].'<span><h4 class="badge badge-danger">Mới</h4></span></h3>
+                            <h3 class="text-color">'.$row['name'].'</h3>
                             <p class="price">'.number_format($row['normal_price']).' VND</p>
                             <a href="cart.php?id='.$row['id'].'"  class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </a>
                         </div>
@@ -132,8 +136,8 @@
                                     echo ' <i class="fa fa-star"></i>'; 
                             echo'</p>
                             <p class="price">
-                                <del>'.number_format($row['normal_price']).' VND</del>
                                 <span class="text-danger">'.number_format($row['sale_price']).' VND</span>
+                                <del>'.number_format($row['normal_price']).' VND</del>
                             </p>
                             <a href="cart.php?id='.$row['id'].'" class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i></a>
                         </div>
