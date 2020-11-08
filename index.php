@@ -142,7 +142,7 @@
                                 <span class="text-danger">'.number_format($row['sale_price']).' VND</span>
                                 <del>'.number_format($row['normal_price']).' VND</del>
                             </p>
-                            <a href="cart.php?id='.$row['id'].'" class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i></a>
+                            <a href="addcart.php?id='.$row['id'].'" class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i></a>
                         </div>
                         ';
                     }

@@ -1,4 +1,5 @@
 <?php 
+    session_start();
     require_once('db_config/db_connect.php');
     $total_Page = $current_Page = 1;
     if(isset($_GET['pg']))
@@ -49,7 +50,6 @@
 
     <!----------------------- I. Header -->
     <?php 
-        session_start();
         include('header.php');
     ?>   
 
@@ -79,7 +79,7 @@
                             <a href="detail.php?id='.$row['id'].'"><img class="product_image" src="./img/'.$row['image'].'"></a>
                             <h3 class="text-color">'.$row['name'].'</h3>
                             <p class="price">'.number_format($row['normal_price']).' VND</p>
-                            <a href="cart.php?id='.$row['id'].'"  class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </a>
+                            <a href="addcart.php?id='.$row['id'].'"  class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </a>
                         </div>
                         ';
                     }

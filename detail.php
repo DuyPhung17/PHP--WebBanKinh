@@ -1,4 +1,5 @@
 <?php 
+    session_start();
     $id = $_GET['id'];
     require_once('db_config/db_connect.php');
 
@@ -42,7 +43,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <?php 
-        session_start();
         include('header.php');
     ?>   
 
@@ -78,8 +78,8 @@
                     <div class="product-desc">
                         <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo ms id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe.</p>
                     </div>
-                    <button type="button" id="loginbtn" class="btn btn-color">Mua Hàng</button>
-                    <button type="button" id="signup" class="btn btn-outline-color">Thêm vào <i class="fa fa-cart-plus"></i> </button>
+                    <a href="addcart.php?id='.$id.'" id="loginbtn" class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </a>
+                    <button type="button" id="signup" class="btn btn-outline-color">Đánh giá</button>
                 </div>
                     ';
             ?>

@@ -1,4 +1,5 @@
 <?php 
+    session_start();
     $id = $_GET['id'];
     require_once('db_config/db_connect.php');
 
@@ -53,7 +54,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <?php 
-        session_start();
         include('header.php');
     ?>    
 
@@ -100,7 +100,7 @@
                                     ';
                                 else echo number_format($row['normal_price']).' VND';
                             echo '</p>
-                            <button class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </button>
+                            <a href="addcart.php?id='.$row['gid'].'"  class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </a>
                         </div>
                     ';
                     }

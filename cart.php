@@ -1,7 +1,33 @@
 <?php
     session_start();
     require_once('db_config/db_connect.php');
+    if(isset($_SESSION['cart']))
     $cart = $_SESSION['cart'];
+    
+    if(isset($_GET['action']))
+    {
+        switch($_GET['action']){
+            case 'del':
+                if(isset($_GET['id'])) 
+                {
+                    unset($_SESSION['cart'][$_GET['id']]);
+                    header('location: cart.php');
+                }
+                ;break;
+
+            case 'submit':
+                if(isset($_POST['upd'])) 
+                {   
+                    // foreach($_POST['qty'] as $id=>$qty)
+                    //     $_SESSION['cart'][$id] = $qty;
+                }
+                elseif(isset($_POST['ord'])) 
+                {
+                    
+                }
+                ;break;
+        }
+    }
     //Xy ly cart
     if(!isset($_SESSION['name']))
         header('location: index.php?fail=1');
@@ -42,8 +68,9 @@
 
     <!--Glasses on cart-->
     <div class="container detail">
-        <h3 class="text-center pt-1 pb-2 text-color">- SẢN PHẨM ĐÃ THÊM -</h3>
-        <form action="" method="post">
+        <h4 class="text-center pt-1 pb-3 text-color">- SẢN PHẨM ĐÃ THÊM -</h4>
+
+        <form action="cart.php?action=submit" method="post">
             <table class="table">
                 <thead class="bg-color text-white">
                     <tr>
@@ -62,7 +89,7 @@
                     if(!isset($cart))
                         echo '<tr><td colspan="7" align="center"><h5>Bạn chưa thêm mặt hàng nào !<h5></td></tr>';
                      else
-                        foreach($cart as $id=>$sl)
+                        foreach($cart as $id=>$qty)
                         {
                             $sql = 'Select glasses.name as gname, glasses.image as gimage, normal_price, sale_price, brand.image as bimage
                                     from glasses join brand
@@ -75,26 +102,27 @@
                                 <td><img height="40px" src="img/'.$row['gimage'].'"/> '.$row['gname'].'</td>
                                 <td><img height="40px" src="img/'.$row['bimage'].'"/></td>
                                 <td>'.number_format($row['normal_price']).' VND</td>
-                                <td><input type="number" value="'.$sl.'" style="width:50px"></td>
-                                <td>'.number_format($row['normal_price']*$sl).'</td>
+                                <td><input type="number" name="qty" value="'.$qty.'" style="width:50px"></td>
+                                <td>'.number_format($row['normal_price']*$qty).' VND</td>
                                 <td>
-                                    <a class="btn btn-sm btn-secondary" href="#">Cập nhật</a>
-                                    <a class="btn btn-sm btn-secondary" href="cart.php?action=del&id='.$id.'">Xóa</a>
+                                    <a class="btn btn-sm btn-danger" href="cart.php?action=del&id='.$id.'">Xóa</a>
                                 </td>
                             </tr>';
-                            $total += $row['normal_price']*$sl;
+                            $total += $row['normal_price']*$qty;
                         }
                         echo'
                         <tr class="text-color">
-                            <td colspan="5" align="right"><h5>Tổng cộng: </h5></td>
-                            <td colspan="2"><h5>'.number_format($total).' VND</h5></td>
+                            <td colspan="5" align="right"><b>Tổng cộng: </b></td>
+                            <td colspan="2"><b>'.number_format($total).' VND</b></td>
                         </tr>
                         ';
                     ?>
                 </tbody>
             </table>
             <div>
-                <button type="submit" name="submit" class="btn btn-color" href="#">Đặt hàng</button>
+                <button type="submit" name="upd" class="btn btn-secondary">Cập nhật</button>
+                <button type="submit" name="ord" class="btn btn-color">Đặt hàng</button>
+                <a class="btn btn-info" href="index.php">Mua sắm tiếp</a>
             </div>
         </form>
     </div>
