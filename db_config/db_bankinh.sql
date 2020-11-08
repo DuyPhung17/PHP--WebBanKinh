@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2020 at 04:49 AM
+-- Generation Time: Nov 08, 2020 at 03:02 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -48,7 +48,8 @@ INSERT INTO `account` (`id`, `name`, `username`, `password`, `admin`, `phone`, `
 (2, 'Nguyễn Xuân Huy', 'huy', '123', NULL, '0916858382', 'Ninh Thuận', 'avatar.png', 'springhuy@gmail.com'),
 (3, 'Diệp Túy Dũng', 'dung', '123', NULL, '0913320382', 'Cam Ranh', 'avatar.png', 'dunglu@gmail.com'),
 (4, 'Nguyễn Ngọc Hoàng', 'hoang', '123', NULL, '0913320382', 'Phú Yên', 'avatar.png', 'hoangdiem@gmail.com'),
-(5, 'Vũ Ngọc Đoàn', 'doan', '123', NULL, '01625320382', 'Nha Trang', 'avatar.png', 'doanmelodit@gmail.com');
+(5, 'Vũ Ngọc Đoàn', 'doan', '123', NULL, '01625320382', 'Nha Trang', 'avatar.png', 'doanmelodit@gmail.com'),
+(6, 'Võ Minh Toàn', 'toan', '123', NULL, '01625320333', 'Quảng Nam', 'avatar.png', 'boy1mon@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -60,23 +61,21 @@ CREATE TABLE `bills` (
   `id` int(10) UNSIGNED NOT NULL,
   `id_customer` int(11) DEFAULT NULL,
   `date_order` date DEFAULT NULL,
-  `total` float DEFAULT NULL COMMENT 'tổng tiền',
-  `payment` varchar(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'hình thức thanh toán',
+  `total` float DEFAULT NULL,
   `note` varchar(500) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT current_timestamp()
+  `status` bit(1) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bills`
 --
 
-INSERT INTO `bills` (`id`, `id_customer`, `date_order`, `total`, `payment`, `note`, `created_at`, `updated_at`) VALUES
-(14, 14, '2017-03-23', 160000, 'COD', 'k', '2017-03-23 04:46:05', '2017-03-23 04:46:05'),
-(13, 13, '2017-03-21', 400000, 'ATM', 'Vui lòng giao hàng trước 5h', '2017-03-21 07:29:31', '2017-03-21 07:29:31'),
-(12, 12, '2017-03-21', 520000, 'COD', 'Vui lòng chuyển đúng hạn', '2017-03-21 07:20:07', '2017-03-21 07:20:07'),
-(11, 11, '2017-03-21', 420000, 'COD', 'không chú', '2017-03-21 07:16:09', '2017-03-21 07:16:09'),
-(15, 15, '2017-03-24', 220000, 'COD', 'e', '2017-03-24 07:14:32', '2017-03-24 07:14:32');
+INSERT INTO `bills` (`id`, `id_customer`, `date_order`, `total`, `note`, `status`) VALUES
+(1, 2, '2020-11-06', 160000, 'Freeship mới lấy hàng', NULL),
+(2, 3, '2020-11-07', 400000, 'Giao tới cam ranh nha', NULL),
+(3, 4, '2020-11-02', 520000, 'Nhớ giao đúng hạn', NULL),
+(4, 5, '2020-11-08', 420000, NULL, NULL),
+(5, 6, '2020-11-06', 220000, 'Có freeship không ?', NULL);
 
 -- --------------------------------------------------------
 
@@ -87,26 +86,24 @@ INSERT INTO `bills` (`id`, `id_customer`, `date_order`, `total`, `payment`, `not
 CREATE TABLE `bill_detail` (
   `id` int(10) UNSIGNED NOT NULL,
   `id_bill` int(10) NOT NULL,
-  `id_product` int(10) NOT NULL,
-  `quantity` int(11) NOT NULL COMMENT 'số lượng',
-  `unit_price` double NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+  `id_glasses` int(10) NOT NULL,
+  `quantity` int(11) DEFAULT 1,
+  `normal_price` double NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bill_detail`
 --
 
-INSERT INTO `bill_detail` (`id`, `id_bill`, `id_product`, `quantity`, `unit_price`, `created_at`, `updated_at`) VALUES
-(18, 15, 62, 5, 220000, '2017-03-24 07:14:32', '2017-03-24 07:14:32'),
-(17, 14, 2, 1, 160000, '2017-03-23 04:46:05', '2017-03-23 04:46:05'),
-(16, 13, 60, 1, 200000, '2017-03-21 07:29:31', '2017-03-21 07:29:31'),
-(15, 13, 59, 1, 200000, '2017-03-21 07:29:31', '2017-03-21 07:29:31'),
-(14, 12, 60, 2, 200000, '2017-03-21 07:20:07', '2017-03-21 07:20:07'),
-(13, 12, 61, 1, 120000, '2017-03-21 07:20:07', '2017-03-21 07:20:07'),
-(12, 11, 61, 1, 120000, '2017-03-21 07:16:09', '2017-03-21 07:16:09'),
-(11, 11, 57, 2, 150000, '2017-03-21 07:16:09', '2017-03-21 07:16:09');
+INSERT INTO `bill_detail` (`id`, `id_bill`, `id_glasses`, `quantity`, `normal_price`) VALUES
+(1, 1, 2, 6, 220000),
+(2, 2, 11, 1, 160000),
+(3, 3, 8, 1, 200000),
+(4, 4, 15, 1, 200000),
+(5, 5, 37, 2, 200000),
+(6, 5, 19, 1, 120000),
+(7, 6, 3, 1, 120000),
+(8, 6, 5, 2, 150000);
 
 -- --------------------------------------------------------
 
@@ -167,7 +164,6 @@ INSERT INTO `glasses` (`id`, `name`, `id_brand`, `image`, `normal_price`, `sale_
 (8, 'Fendi FF026', 3, 'fendi6.png', 3747000, 3682000, 4, NULL),
 (9, 'Fendi FFM30', 3, 'fendi7.png', 4880000, NULL, 5, NULL),
 (10, 'Fendi FFM70', 3, 'fendi8.png', 4106000, NULL, 5, NULL),
-(11, 'Coach Fanny', 1, 'Coach1.png', 4230000, NULL, 3, NULL),
 (12, 'Coach LH023', 1, 'Coach2.png', 2737000, NULL, 4, b'1'),
 (13, 'Coach LH091', 1, 'Coach3.png', 3024000, 2920000, 3, NULL),
 (14, 'Coach LH037', 1, 'Coach4.png', 2667000, NULL, 4, NULL),
@@ -241,7 +237,8 @@ INSERT INTO `glasses` (`id`, `name`, `id_brand`, `image`, `normal_price`, `sale_
 -- Indexes for table `account`
 --
 ALTER TABLE `account`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- Indexes for table `bills`
@@ -255,7 +252,7 @@ ALTER TABLE `bills`
 --
 ALTER TABLE `bill_detail`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `bill_detail_ibfk_2` (`id_product`);
+  ADD KEY `bill_detail_ibfk_2` (`id_glasses`);
 
 --
 -- Indexes for table `brand`
@@ -278,19 +275,19 @@ ALTER TABLE `glasses`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `bills`
 --
 ALTER TABLE `bills`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `bill_detail`
 --
 ALTER TABLE `bill_detail`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `brand`
@@ -302,7 +299,7 @@ ALTER TABLE `brand`
 -- AUTO_INCREMENT for table `glasses`
 --
 ALTER TABLE `glasses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- Constraints for dumped tables
