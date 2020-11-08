@@ -1,8 +1,9 @@
 <?php 
     require_once('../db_config/db_connect.php');
-
+    if(isset($_GET['id']))
+        $id = $_GET['id'];
     //Phan trang
-    $sql_qty = 'select count(id) as qty from brand';
+    $sql_qty = 'select count(id) as qty from bill_detail where id_bill ='.$id;
     $result_qty = mysqli_query($conn,$sql_qty);
     $row = mysqli_fetch_array($result_qty);
     $total_Product = $row['qty']; //Tong so san pham
@@ -12,27 +13,25 @@
         $current_Page = $_GET['pg'];//Trang hien tai
     $index = ($current_Page - 1)*$product_perPage; //Vi tri bat dau lay trong $sql LIMIT
 
-    $sql = 'Select * from account limit '.$index.', '.$product_perPage.'';
+    $sql = 'Select * from bill_detail join bills 
+            on bill_detail.id_bill = bills.id
+            join glasses on bill_detail.id_glasses = glasses.id
+            where id_bill = '.$id.' limit '.$index.', '.$product_perPage.'';
     $result = mysqli_query($conn,$sql);
 ?>
 
 <div class="container detail">
-    <div class="top">
-        <h4 class="text-color"><i class="fa fa-user"></i> QUẢN LÝ TÀI KHOẢN</h4>
-        <a class="btn btn-color" href="#">Thêm mới</a>
+    <div class="m-4">
+        <h5 class="text-color"><a class="text-secondary" href="index.php?page=o&pg=1"><i style="font-size: 25px;" class="fas fa-arrow-circle-left"></i></a>Thông tin đơn hàng #<?php echo $id ?></h5>
     </div>
 
     <table class="table">
         <thead class="bg-color text-white">
             <tr>
                 <th>STT</th>
-                <th>Tên tài khoản</th>
-                <th>Ảnh đại diện</th>
-                <th>Tên đăng nhập</th>
-                <th>Mật khẩu</th>
-                <th>Điện thoại</th>
-                <th>Địa chỉ</th>
-                <th>Vai trò</th>
+                <th>Sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Đơn giá</th>
                 <th colspan="2"></th>
             </tr>
         </thead>
@@ -45,15 +44,8 @@
                     <tr>
                         <td>'.$i++.'</td>
                         <td>'.$row['name'].'</td>
-                        <td><img class="avt_user" src="../img/'.$row['image'].'"/></td>
-                        <td>'.$row['username'].'</td>
-                        <td>'.$row['password'].'</td>
-                        <td>'.$row['phone'].'</td>
-                        <td>'.$row['address'].'</td>';
-                        if($row['admin']==1)
-                            echo'<td>Quản trị</td>';
-                        else echo '<td>Khách hàng</td>';
-                        echo '
+                        <td>'.$row['quantity'].'</td>
+                        <td>'.number_format($row['normal_price']).' VND</td>
                         <td>
                             <a class="btn btn-sm btn-secondary" href="#">Cập nhật</a>
                             <a class="btn btn-sm btn-danger" href="#">Xóa</a>
@@ -71,7 +63,7 @@
             if($_GET['pg']>1)
                 echo '        
                 <li class="page-item">
-                    <a class="page-link" href="?page=a&pg='.($_GET['pg']-1).'">Trước</a>
+                    <a class="page-link" href="?page=o&pg='.($_GET['pg']-1).'">Trước</a>
                 </li>';
             else echo '        
                 <li class="page-item disabled">
@@ -83,15 +75,15 @@
                 if($i==$_GET['pg'])
                 echo '        
                 <li class="page-item active">
-                    <a class="page-link" href="?page=a&pg='.$i.'">'.$i.'<span class="sr-only">(current)</span></a>
+                    <a class="page-link" href="?page=o&pg='.$i.'">'.$i.'<span class="sr-only">(current)</span></a>
                 </li>';
-                else echo '<li class="page-item"><a class="page-link" href="?page=a&pg='.$i.'">'.$i.'</a></li>';
+                else echo '<li class="page-item"><a class="page-link" href="?page=o&pg='.$i.'">'.$i.'</a></li>';
             }
             //Gan nut sau
             if($_GET['pg']<$total_Page)
                 echo '        
                 <li class="page-item">
-                    <a class="page-link" href="?page=a&pg='.($_GET['pg']+1).'">Sau</a>
+                    <a class="page-link" href="?page=o&pg='.($_GET['pg']+1).'">Sau</a>
                 </li>';
             else echo '        
                 <li class="page-item disabled">

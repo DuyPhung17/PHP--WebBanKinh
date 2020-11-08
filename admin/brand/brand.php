@@ -20,7 +20,7 @@
 
 <div class="container detail">
     <div class="top">
-        <h4 class="text-color">QUẢN LÝ THƯƠNG HIỆU</h4>
+        <h4 class="text-color"><i class="fas fa-copyright"></i> QUẢN LÝ THƯƠNG HIỆU</h4>
         <a class="btn btn-color" href="index.php?page=ba">Thêm mới</a>
     </div>
 

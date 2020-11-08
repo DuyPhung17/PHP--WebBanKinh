@@ -1,26 +1,12 @@
 <?php
     session_start();
-    //Kiem tra so luong sp trong cart
+    require_once('db_config/db_connect.php');
+    $cart = $_SESSION['cart'];
+    //Xy ly cart
     if(!isset($_SESSION['name']))
         header('location: index.php?fail=1');
 
-    if(!isset($_SESSION['cart']))
-        $cart = $_SESSION['cart'] = array();
-    if(isset($_GET['id']))
-    {
-        $id = $_GET['id'];
-        require_once('db_config/db_connect.php');
-        $sql = 'Select glasses.name as gname, glasses.image as gimage, normal_price, sale_price, brand.image as bimage
-                from glasses join brand
-                on glasses.id_brand = brand.id 
-                where glasses.id = '.$id;
-        $result = mysqli_query($conn,$sql);
-        if(mysqli_num_rows($result) > 0)
-        {
-            $row = mysqli_fetch_array($result);
-            $cart[] = $row;
-        }
-    }
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -56,7 +42,8 @@
 
     <!--Glasses on cart-->
     <div class="container detail">
-        <h3 class="text-center p-3 text-color">- SẢN PHẨM ĐÃ THÊM -</h3>
+        <h3 class="text-center pt-1 pb-2 text-color">- SẢN PHẨM ĐÃ THÊM -</h3>
+        <form action="" method="post">
             <table class="table">
                 <thead class="bg-color text-white">
                     <tr>
@@ -70,35 +57,46 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php 
-                        if(!isset($id))
-                            echo '<tr><td colspan="7" align="center"><h5>Bạn chưa thêm mặt hàng nào !<h5></td></tr>';
-                        else
-                        echo '
-                        <tr>
-                            <td>1</td>
-                            <td><img height="40px" src="img/'.$row['gimage'].'"/> '.$row['gname'].'</td>
-                            <td><img height="40px" src="img/'.$row['bimage'].'"/></td>
-                            <td>'.number_format($row['normal_price']).'</td>
-                            <td><input type="number" value="1" style="width:50px"></td>
-                            <td>'.number_format($row['normal_price']).'</td>
-                            <td>
-                                <a class="btn btn-sm btn-secondary" href="#">Xóa</a>
-                                <a class="btn btn-sm btn-secondary" href="#">Cập nhật</a>
-                            </td>
+                    <?php   
+                    $total = 0;               
+                    if(!isset($cart))
+                        echo '<tr><td colspan="7" align="center"><h5>Bạn chưa thêm mặt hàng nào !<h5></td></tr>';
+                     else
+                        foreach($cart as $id=>$sl)
+                        {
+                            $sql = 'Select glasses.name as gname, glasses.image as gimage, normal_price, sale_price, brand.image as bimage
+                                    from glasses join brand
+                                    on glasses.id_brand = brand.id 
+                                    where glasses.id = '.$id;
+                            $row = mysqli_fetch_array(mysqli_query($conn,$sql));
+                            echo '
+                            <tr>
+                                <td>1</td>
+                                <td><img height="40px" src="img/'.$row['gimage'].'"/> '.$row['gname'].'</td>
+                                <td><img height="40px" src="img/'.$row['bimage'].'"/></td>
+                                <td>'.number_format($row['normal_price']).' VND</td>
+                                <td><input type="number" value="'.$sl.'" style="width:50px"></td>
+                                <td>'.number_format($row['normal_price']*$sl).'</td>
+                                <td>
+                                    <a class="btn btn-sm btn-secondary" href="#">Cập nhật</a>
+                                    <a class="btn btn-sm btn-secondary" href="cart.php?action=del&id='.$id.'">Xóa</a>
+                                </td>
+                            </tr>';
+                            $total += $row['normal_price']*$sl;
+                        }
+                        echo'
+                        <tr class="text-color">
+                            <td colspan="5" align="right"><h5>Tổng cộng: </h5></td>
+                            <td colspan="2"><h5>'.number_format($total).' VND</h5></td>
                         </tr>
                         ';
                     ?>
-                    <tr class="text-color">
-                        <td colspan="5" align="right"><h5>Tổng cộng: </h5></td>
-                        <td colspan="2"><h5>1000000</h5></td>
-                    </tr>
                 </tbody>
             </table>
             <div>
-                <a class="btn btn-sm btn-color" href="#">Mua hàng</a>
+                <button type="submit" name="submit" class="btn btn-color" href="#">Đặt hàng</button>
             </div>
-
+        </form>
     </div>
 
     <!----------------------- VIII. Footer -->

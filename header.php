@@ -12,6 +12,7 @@
         if(mysqli_num_rows($result)>0)
         {   
             $row = mysqli_fetch_array($result);
+            $_SESSION['id'] = $row['id'];
             $_SESSION['usn'] = $row['username'];
             $_SESSION['pwd'] = $row['password'];
             $_SESSION['adm'] = $row['admin'];

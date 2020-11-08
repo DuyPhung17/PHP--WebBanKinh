@@ -35,9 +35,12 @@
         session_start();
         if(isset($_GET['fail']))
             echo '<script type="text/javascript">swal("Chức năng giỏ hàng cần đăng nhập !", "Nếu chưa có tài khoản hãy đăng ký !", "error");</script>';
-        include('header.php');
+        if(isset($_GET['stt']))
+            echo '<script type="text/javascript">swal("Đã thêm mặt hàng này vào giỏ !", "Hãy kiểm tra giỏ hàng của bạn!", "success");</script>';
+   
         if(isset($_GET['scs']))
             echo '<script type="text/javascript">swal("Đăng nhập thành công!","Chào mừng '.$_SESSION['name'].' quay trở lại","success");</script>';
+        include('header.php');
     ?>
 
     <!----------------------- II. CREATE CAROUSEL -->
@@ -105,7 +108,7 @@
                             <a href="detail.php?id='.$row['id'].'"><img class="product_image" src="./img/'.$row['image'].'"></a>
                             <h3 class="text-color">'.$row['name'].'</h3>
                             <p class="price">'.number_format($row['normal_price']).' VND</p>
-                            <a href="cart.php?id='.$row['id'].'"  class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </a>
+                            <a href="addcart.php?id='.$row['id'].'"  class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </a>
                         </div>
                         ';
                     }

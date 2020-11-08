@@ -28,7 +28,7 @@
 
 <div class="container detail">
     <div class="top">
-        <h4 class="text-color">QUẢN LÝ SẢN PHẨM</h4>
+        <h4 class="text-color"><i class="fas fa-glasses"></i>QUẢN LÝ SẢN PHẨM</h4>
         <a class="btn btn-color" href="index.php?page=pa">Thêm mới</a>
     </div>
 
