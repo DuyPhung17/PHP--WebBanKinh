@@ -113,7 +113,7 @@
                                         <a href="#" class="m-5 text-color">Quên mật khẩu</a>
                                     </div>
                                     <button type="submit" name="login" id="loginbtn" class="btn btn-color btn-block mt-3">Đăng Nhập</button>
-                                    <button type="submit" id="signup" class="btn btn-outline-color btn-block">Đăng Ký</button>
+                                    <a id="signup" href="register.php" class="btn btn-outline-color btn-block">Đăng Ký</a>
                                 </form>
                             </div>    
                         </div> 
