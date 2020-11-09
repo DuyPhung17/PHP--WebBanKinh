@@ -73,7 +73,7 @@ nav{
         top: 20%;
     }
 }
-.badge{
+#new{
     font-size: 20px !important;
     float: right;
     margin-right: 30px;
@@ -284,5 +284,10 @@ nav{
     border: 1px solid var(--mainColor);
   box-shadow: 0 0 0 1px var(--mainColor);
 }
-/*footer*/
-
+/*cart*/
+#cart_count{
+    margin-left: -10px !important;
+    margin-top: -10px !important;
+    font-size: 13px;
+    z-index: 1;
+}

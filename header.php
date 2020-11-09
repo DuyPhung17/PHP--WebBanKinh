@@ -1,7 +1,6 @@
 <?php 
 
     require_once('db_config/db_connect.php');
-
     if(isset($_POST['login']))
     {
         $usn = $_POST['usn'];
@@ -26,6 +25,9 @@
         }
         else echo '<script type="text/javascript">swal("Đăng nhập thất bại!", "Tên đăng nhập hoặc mật khẩu không đúng !", "error");</script>';
     }
+    $count = 0;
+    if(isset($_SESSION['cart']))
+        $count = count($_SESSION['cart']);
 ?>
 
 <nav class="navbar navbar-expand-sm  sticky-top shadow-lg" id="navbar">                                    
@@ -56,7 +58,9 @@
                         <a class="nav-link" id="navlink" href="logout.php">Đăng Xuất</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="navlink" href="cart.php"><i class="fa fa-shopping-cart cart"></i></a>
+                        <a class="nav-link" id="navlink" href="cart.php"><i class="fa fa-shopping-cart cart"></i>
+                        <span class="badge badge-pill badge-danger" id="cart_count">'.$count.'</span>
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" id="navlink" href="#">'.$_SESSION['name'].'<img class="ml-2 avt" height="30px" src="img/'.$_SESSION['img'].'"></a>
@@ -67,7 +71,9 @@
                         <a class="nav-link" id="navlink" data-toggle="modal" data-target="#login" href="#login">Đăng Nhập</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="navlink" href="cart.php"><i class="fa fa-shopping-cart cart"></i></a>
+                        <a class="nav-link" id="navlink" href="cart.php"><i class="fa fa-shopping-cart cart"></i>
+
+                        </a>
                     </li>
                     ';
                 ?>
@@ -75,7 +81,7 @@
             </ul>
         </div>   
     </nav>
-    
+
     <!-- LoginForm -->
     <div class="modal fade" id="login">
         <div class="modal-dialog">
