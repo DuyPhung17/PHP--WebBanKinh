@@ -27,7 +27,8 @@
     }
     $count = 0;
     if(isset($_SESSION['cart']))
-        $count = count($_SESSION['cart']);
+    foreach($_SESSION['cart'] as $id=>$qty)
+        $count += $_SESSION['cart'][$id];
 ?>
 
 <nav class="navbar navbar-expand-sm  sticky-top shadow-lg" id="navbar">                                    

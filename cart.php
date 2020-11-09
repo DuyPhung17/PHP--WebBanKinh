@@ -3,7 +3,6 @@
     require_once('db_config/db_connect.php');
     if(isset($_SESSION['cart']))
     $cart = $_SESSION['cart'];
-    
     if(isset($_GET['action']))
     {
         switch($_GET['action']){
@@ -17,21 +16,44 @@
 
             case 'submit':
                 if(isset($_POST['upd'])) 
-                {   
-                    // foreach($_POST['qty'] as $id=>$qty)
-                    //     $_SESSION['cart'][$id] = $qty;
+                {   $qty = $_POST['qty'];
+                    foreach($qty as $id=>$qty)
+                        $_SESSION['cart'][$id] = $qty;
+                    header('location: cart.php');
                 }
                 elseif(isset($_POST['ord'])) 
-                {
-                    
+                {   
+                    if(!empty($total))
+                    {   
+                        date_default_timezone_set('Asia/Ho_Chi_Minh');
+                        //Tao bill moi
+                        // $sql_new_bill = 
+                        // 'INSERT INTO bills (id_customer, date_order, total) 
+                        // VALUES ('.$_SESSION['id'].',"'.date('Y-m-d').'",'.$total.')';
+                        // mysqli_query($conn,$sql_new_bill);
+                        // $id_bill = mysqli_insert_id($conn);
+                    }
+                    // //Lay danh sach id sanpham
+                    // $sql_ids = 'select * from glasses where id in ('.implode(',',array_keys($cart)).')';
+                    // $result_ids = mysqli_query($conn,$sql_ids);
+                    // while($row = mysqli_fetch_array($result_ids))
+                    // {                       
+                    //     //Them vao bill_detail
+                    //     if(isset($id_bill))
+                    //     {
+                    //         $sql_new_detail = 
+                    //         'INSERT INTO bill_detail (id_bill, id_glasses, quantity, normal_price)
+                    //         VALUES ('.$id_bill.','.$row['id'].','.$qty[$row['id']].','.$row['normal_price'].')';
+                    //         mysqli_query($conn,$sql_new_detail);
+                    //     }
+                    // }
                 }
                 ;break;
         }
+
     }
-    //Xy ly cart
     if(!isset($_SESSION['name']))
         header('location: index.php?fail=1');
-
 
 ?>
 <!doctype html>
@@ -84,8 +106,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php   
-                    $total = 0;               
+                    <?php 
+                    $total = 0;                 
                     if(!isset($cart))
                         echo '<tr><td colspan="7" align="center"><h5>Bạn chưa thêm mặt hàng nào !<h5></td></tr>';
                      else
@@ -102,7 +124,7 @@
                                 <td><img height="40px" src="img/'.$row['gimage'].'"/> '.$row['gname'].'</td>
                                 <td><img height="40px" src="img/'.$row['bimage'].'"/></td>
                                 <td>'.number_format($row['normal_price']).' VND</td>
-                                <td><input type="number" name="qty" value="'.$qty.'" style="width:50px"></td>
+                                <td><input type="number" min=1 name="qty['.$id.']" value="'.$qty.'" style="width:50px"></td>
                                 <td>'.number_format($row['normal_price']*$qty).' VND</td>
                                 <td>
                                     <a class="btn btn-sm btn-danger" href="cart.php?action=del&id='.$id.'">Xóa</a>
