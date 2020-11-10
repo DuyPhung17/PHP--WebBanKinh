@@ -1,5 +1,8 @@
 <?php
     session_start();
+    if(!isset($_SESSION['id']))
+        header('location: index.php?stt=1');
+    else    
     require_once('db_config/db_connect.php');
     if(isset($_SESSION['cart']))
     $cart = $_SESSION['cart'];
@@ -52,8 +55,7 @@
         }
 
     }
-    if(!isset($_SESSION['name']))
-        header('location: index.php?fail=1');
+
 
 ?>
 <!doctype html>

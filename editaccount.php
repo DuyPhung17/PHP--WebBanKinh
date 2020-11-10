@@ -1,8 +1,13 @@
 <?php 
   session_start();
-
   require_once('db_config/db_connect.php');
-  
+
+  $name = $_SESSION['name'];
+  $address = $_SESSION['addr'];
+  $phone = $_SESSION['phone'];
+  $username = $_SESSION['usn'];
+  $password = $_SESSION['pwd'];
+
   $errName = $errAddress = $errPhone = $errUsername = $errPassword = $errPasswordRT = "";
   if(isset($_POST['submit']))
   {
@@ -83,7 +88,7 @@
                 VALUES("'.$name.'","'.$username.'","'.$password.'","'.$phone.'","'.$address.'")';
       mysqli_query($conn, $sql);
       $check = 1;
-      echo '<script type="text/javascript">swal("Tạo tài khoản thành công!", "Tên tài khoản: '.$name.'", "success");</script>';
+      echo '<script type="text/javascript">swal("Cập nhật tài khoản thành công!", "Tên tài khoản: '.$name.'", "success");</script>';
     }
   }
 ?>
@@ -123,7 +128,7 @@
     ?>   
 
 <div class="mt-4">
-    <h3 class=" text-center mb-4">- Đăng ký tài khoản -</h3>
+    <h3 class=" text-center mb-4">- Cập nhật thông tin tài khoản -</h3>
     <form action="" method="post" enctype="multipart/form-data" style="width:50%;margin-left:20%">
     
         <div class="form-group row">
@@ -213,7 +218,7 @@
         <div class="form-group row">
         <p class="col-sm-4"></p>
           <div class="col-sm-8 pl-0 pt-3">
-            <input class="btn btn-color" type="submit" name="submit" value="Thêm">
+            <input class="btn btn-color" type="submit" name="submit" value="Cập nhật">
             <button class="btn btn-secondary" type="reset">Đặt lại</button>
           </div>
         </div>

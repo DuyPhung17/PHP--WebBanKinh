@@ -28,7 +28,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Thương Hiệu</title>
+        <title>Sản phẩm</title>
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -85,7 +85,7 @@
                     {
                         echo '
                         <div class="col-md-4 product_item">
-                            <a href="detail.php?id='.$row['gid'].'"><img class="product_image" src="img/'.$row['image'].'"></a>
+                            <a href="detail.php?id='.$row['gid'].'&pg=1"><img class="product_image" src="img/'.$row['image'].'"></a>
                             <h3 class="text-color">'.$row['gname'].'</h3>
                             <p class="rating">
                                 Đánh giá: ';

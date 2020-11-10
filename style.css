@@ -291,3 +291,23 @@ nav{
     font-size: 13px;
     z-index: 1;
 }
+/*account*/
+.avt_user{
+    height: 160px !important;
+    margin-left: 60%;
+    border-radius: 50%;
+    background-color: #203864 !important;
+    border: 2px solid var(--mainColor);
+}
+.table-acc{
+    width: 50% !important;
+    margin-left: 10%;
+}
+#accimg{
+    width: 100px;
+    margin-bottom: 30px;
+    border-radius: 50%;
+    background-color: #203864 !important;
+    border: 2px solid var(--mainColor);
+}
+
