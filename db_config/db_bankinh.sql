@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2020 at 03:02 PM
+-- Generation Time: Nov 11, 2020 at 03:03 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -35,21 +35,21 @@ CREATE TABLE `account` (
   `admin` bit(1) DEFAULT NULL,
   `phone` varchar(20) COLLATE utf8_vietnamese_ci DEFAULT NULL,
   `address` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `image` varchar(50) COLLATE utf8_vietnamese_ci DEFAULT 'avatar.png',
-  `email` varchar(50) COLLATE utf8_vietnamese_ci DEFAULT NULL
+  `image` varchar(50) COLLATE utf8_vietnamese_ci DEFAULT 'avatar.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
 -- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`id`, `name`, `username`, `password`, `admin`, `phone`, `address`, `image`, `email`) VALUES
-(1, 'Phùng Bá Duy', 'duy', '123', b'1', '0986858382', '14 Ngọc Thảo, Nha Trang', 'panda.png', 'duyphung@gmail.com'),
-(2, 'Nguyễn Xuân Huy', 'huy', '123', NULL, '0916858382', 'Ninh Thuận', 'avatar.png', 'springhuy@gmail.com'),
-(3, 'Diệp Túy Dũng', 'dung', '123', NULL, '0913320382', 'Cam Ranh', 'avatar.png', 'dunglu@gmail.com'),
-(4, 'Nguyễn Ngọc Hoàng', 'hoang', '123', NULL, '0913320382', 'Phú Yên', 'avatar.png', 'hoangdiem@gmail.com'),
-(5, 'Vũ Ngọc Đoàn', 'doan', '123', NULL, '01625320382', 'Nha Trang', 'avatar.png', 'doanmelodit@gmail.com'),
-(6, 'Võ Minh Toàn', 'toan', '123', NULL, '01625320333', 'Quảng Nam', 'avatar.png', 'boy1mon@gmail.com');
+INSERT INTO `account` (`id`, `name`, `username`, `password`, `admin`, `phone`, `address`, `image`) VALUES
+(1, 'Phùng Bá Duy', 'duy', '123', b'1', '0986858382', '14 Ngọc Thảo, Nha Trang', 'panda.png'),
+(2, 'Nguyễn Xuân Huy', 'huy', '123', NULL, '0916858382', 'Ninh Thuận', 'avatar.png'),
+(3, 'Diệp Túy Dũng', 'dung', '123', NULL, '0913320382', 'Cam Ranh', 'avatar.png'),
+(4, 'Nguyễn Ngọc Hoàng', 'hoang', '123', NULL, '0913320382', 'Phú Yên', 'avatar.png'),
+(5, 'Vũ Ngọc Đoàn', 'doan', '123', NULL, '01625320382', 'Nha Trang', 'avatar.png'),
+(6, 'Võ Minh Toàn', 'toan', '123', NULL, '01625320333', 'Quảng Nam', 'avatar.png'),
+(11, 'Phùng Bá Duy', 'duy2', '123', NULL, '0868478729', 'Nha Trang', 'avatar.png');
 
 -- --------------------------------------------------------
 
@@ -62,20 +62,22 @@ CREATE TABLE `bills` (
   `id_customer` int(11) DEFAULT NULL,
   `date_order` date DEFAULT NULL,
   `total` float DEFAULT NULL,
-  `note` varchar(500) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `status` bit(1) DEFAULT NULL
+  `status` bit(1) DEFAULT b'0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bills`
 --
 
-INSERT INTO `bills` (`id`, `id_customer`, `date_order`, `total`, `note`, `status`) VALUES
-(1, 2, '2020-11-06', 160000, 'Freeship mới lấy hàng', NULL),
-(2, 3, '2020-11-07', 400000, 'Giao tới cam ranh nha', NULL),
-(3, 4, '2020-11-02', 520000, 'Nhớ giao đúng hạn', NULL),
-(4, 5, '2020-11-08', 420000, NULL, NULL),
-(5, 6, '2020-11-06', 220000, 'Có freeship không ?', NULL);
+INSERT INTO `bills` (`id`, `id_customer`, `date_order`, `total`, `status`) VALUES
+(1, 2, '2020-11-06', 160000, b'0'),
+(2, 3, '2020-11-07', 400000, b'0'),
+(3, 4, '2020-11-02', 520000, b'0'),
+(4, 5, '2020-11-08', 420000, b'0'),
+(5, 6, '2020-11-06', 220000, b'0'),
+(22, 2, '2020-11-11', 12825000, b'1'),
+(21, 2, '2020-11-11', 8720000, b'1'),
+(23, 2, '2020-11-11', 9953000, b'0');
 
 -- --------------------------------------------------------
 
@@ -102,8 +104,16 @@ INSERT INTO `bill_detail` (`id`, `id_bill`, `id_glasses`, `quantity`, `normal_pr
 (4, 4, 15, 1, 200000),
 (5, 5, 37, 2, 200000),
 (6, 5, 19, 1, 120000),
-(7, 6, 3, 1, 120000),
-(8, 6, 5, 2, 150000);
+(22, 21, 1, 1, 3246000),
+(23, 21, 12, 2, 2737000),
+(25, 22, 17, 1, 3747000),
+(24, 22, 31, 1, 5501000),
+(26, 22, 22, 1, 3577000),
+(27, 23, 45, 1, 3173000),
+(28, 23, 40, 1, 6780000),
+(29, 24, 45, 1, 3173000),
+(30, 24, 40, 1, 6780000),
+(31, 25, 12, 1, 2737000);
 
 -- --------------------------------------------------------
 
@@ -275,19 +285,19 @@ ALTER TABLE `glasses`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `bills`
 --
 ALTER TABLE `bills`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `bill_detail`
 --
 ALTER TABLE `bill_detail`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `brand`
