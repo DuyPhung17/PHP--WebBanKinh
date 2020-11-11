@@ -81,21 +81,25 @@
         $target_file = $target_dir . basename($img);
         move_uploaded_file($_FILES['img']['tmp_name'],$target_file);
     }
-    //add new
+    //update
     if(empty($errName) && empty($errAddress) && empty($errPhone) && empty($errUsername) && empty($errPassword) && empty($errPasswordRT))
     {
-      $sql = 'INSERT INTO account(name,username,password,phone,address) 
-                VALUES("'.$name.'","'.$username.'","'.$password.'","'.$phone.'","'.$address.'")';
+      $sql = 'UPDATE account
+              SET name = "'.$name.'",
+                  username = "'.$username.'",
+                  password = "'.$password.'",
+                  phone = "'.$phone.'",
+                  address = "'.$address.'"
+              WHERE id ='.$_SESSION['id'];
       mysqli_query($conn, $sql);
       $check = 1;
-      echo '<script type="text/javascript">swal("Cập nhật tài khoản thành công!", "Tên tài khoản: '.$name.'", "success");</script>';
     }
   }
 ?>
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Đăng Ký</title>
+        <title>Tài khoản</title>
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -124,7 +128,7 @@
     <?php 
         include('header.php');
         if(isset($check) && isset($name))
-        echo '<script type="text/javascript">swal("Tạo tài khoản thành công!", "Tên tài khoản: '.$name.'", "success");</script>';
+          echo '<script type="text/javascript">swal("Cập nhật khoản thành công!", "Tên tài khoản: '.$name.'", "success");</script>';
     ?>   
 
 <div class="mt-4">

@@ -9,6 +9,7 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@8af0edd/css/all.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="style.css">
         <link rel="icon" href="img/logo.png">
         
@@ -22,6 +23,8 @@
   <?php 
     session_start();
     require_once('db_config/db_connect.php');
+    if(isset($_GET['id']))
+        $id_bill = $_GET['id'];
     if(isset($_GET['fail']))
         echo '<script type="text/javascript">swal("Mật khẩu sai !", "Nếu chưa có tài khoản hãy đăng ký !", "error");</script>';
     if(isset($_POST['submit']))
@@ -37,13 +40,11 @@
             }
         }  
     }
-    $sql = 'Select * from account join bills 
-            on account.id = bills.id_customer where id_customer = '. $_SESSION['id'].' AND status=1';
+    $sql = 'Select * from bill_detail join bills 
+            on bill_detail.id_bill = bills.id
+            join glasses on bill_detail.id_glasses = glasses.id
+            where id_bill = '.$id_bill;
     $result = mysqli_query($conn,$sql);
-
-    $sql_wait = 'Select * from account join bills 
-            on account.id = bills.id_customer where id_customer = '. $_SESSION['id'].' AND status=0';
-    $result_wait = mysqli_query($conn,$sql_wait);
 
 ?>
     <!-- Optional JavaScript -->
@@ -57,8 +58,6 @@
         include('header.php');
         if(isset($check) && isset($name))
         echo '<script type="text/javascript">swal("Tạo tài khoản thành công!", "Tên tài khoản: '.$name.'", "success");</script>';
-        if(isset($_GET['w']))
-        echo '<script type="text/javascript">swal("Đặt hàng thành công !", "Đơn hàng của bạn đang chờ để duyệt", "success");</script>';
     ?>   
 
 <div class="container mt-5">
@@ -96,51 +95,19 @@
         </div>
     </div>
 
-    <!--Waiting-->
     <div class="row">
-            <h4>Đơn hàng đang đợi duyệt</h4>
-            <table class="table table-hover">
-                <thead class="bg-dark text-white">
-                    <tr>
-                        <th>STT</th>
-                        <th>Ngày đặt</th>
-                        <th>Tổng tiền</th>
-                        <th></th>
-                    </tr>
-                </thead>
-            <tbody>
-                <?php 
-                    $i = 1;
-                    while($row = mysqli_fetch_array($result_wait))
-                    {
-                        echo '
-                        <tr>
-                            <td>'.$i++.'</td>
-                            <td>'.date('d/m/Y',strtotime($row['date_order'])).'</td>
-                            <td>'.number_format($row['total']).' VND</td>
-                            <td>
-                                <a class="btn btn-sm btn-color" href="order_detail.php?id='.$row['id'].'">Chi tiết</a>
-                                <a class="btn btn-sm btn-danger" href="bill_delete.php?id='.$row['id'].'">Hủy</a>
-                            </td>
-                        </tr>';
-                    }
-                ?>
-            </tbody>
-            </table>
-        </div>
-
-            <!--history-->
-    <div class="row">
-        <h4>Lịch sử mua hàng</h4>
-        <table class="table table-hover">
-            <thead class="bg-color text-white">
-                <tr>
-                    <th>STT</th>
-                    <th>Ngày đặt</th>
-                    <th>Tổng tiền</th>
-                    <th></th>
-                </tr>
-            </thead>
+    <div class="m-4">
+        <h5 class="text-color"><a class="text-secondary" href="account.php"><i style="font-size: 25px;" class="fas fa-arrow-circle-left mr-2"></i></a>Thông tin đơn hàng #<?php echo $id_bill ?></h5>
+    </div>
+        <table class="table">
+        <thead class="bg-color text-white">
+            <tr>
+                <th>STT</th>
+                <th>Sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Đơn giá</th>
+            </tr>
+        </thead>
         <tbody>
             <?php 
                 $i = 1;
@@ -149,53 +116,50 @@
                     echo '
                     <tr>
                         <td>'.$i++.'</td>
-                        <td>'.date('d/m/Y',strtotime($row['date_order'])).'</td>
-                        <td>'.number_format($row['total']).' VND</td>
-                        <td>
-                            <a class="btn btn-sm btn-color" href="bill_detail.php?id='.$row['id'].'">Chi tiết</a>
-                        </td>
+                        <td>'.$row['name'].'</td>
+                        <td>'.$row['quantity'].'</td>
+                        <td>'.number_format($row['normal_price']).' VND</td>
                     </tr>';
                 }
             ?>
         </tbody>
-        </table>
+    </table>
     </div>
-        <!-- check password -->
-        <div class="modal fade" id="checkpass">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="container-fluid">
-                            <div class="row justify-content-center">
-                                <div id="lgform">
-                                    <a href="index.html" data-dismiss="modal"><i class="fa fa-times-circle"></i></a>
-                                    <form method="post" action="">
-                                        <div class="text-center">
-                                            <?php 
-                                                echo '<img id="accimg" src="./img/'.$_SESSION['img'].'">'; 
-                                                echo '<h5><b>'.$_SESSION['name'].'</b></h5>';                                   
-                                            ?>
-                                        </div>
-                                        <div class="form-group">
-                                            <i class="fa fa-lock" aria-hidden="true"></i>
-                                            <label>Nhập mật khẩu</label>
-                                            <input type="password" class="form-control" name="password">
-                                        </div>
-                                            <a href="#" class="text-color">Quên mật khẩu</a>
-                                            <button type="submit" name="submit" id="signup" href="#" class="btn btn-color ml-5">Tiếp tục</button>
-                                        </div>
-                                    </form>
-                                </div>    
-                            </div> 
-                        </div>
+
+    <!-- check password -->
+    <div class="modal fade" id="checkpass">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row justify-content-center">
+                            <div id="lgform">
+                                <a href="index.html" data-dismiss="modal"><i class="fa fa-times-circle"></i></a>
+                                <form method="post" action="">
+                                    <div class="text-center">
+                                        <?php 
+                                            echo '<img id="accimg" src="./img/'.$_SESSION['img'].'">'; 
+                                            echo '<h5><b>'.$_SESSION['name'].'</b></h5>';                                   
+                                        ?>
+                                    </div>
+                                    <div class="form-group">
+                                        <i class="fa fa-lock" aria-hidden="true"></i>
+                                        <label>Nhập mật khẩu</label>
+                                        <input type="password" class="form-control" name="password">
+                                    </div>
+                                        <a href="#" class="text-color">Quên mật khẩu</a>
+                                        <button type="submit" name="submit" id="signup" href="#" class="btn btn-color ml-5">Tiếp tục</button>
+                                    </div>
+                                </form>
+                            </div>    
+                        </div> 
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
 </div>
-
-
-
     <!----------------------- VIII. Footer -->
     <?php include('footer.php') ?>
 

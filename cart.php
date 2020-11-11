@@ -140,12 +140,13 @@
                             <td colspan="2"><b>'.number_format($total).' VND</b></td>
                         </tr>
                         ';
+                    $_SESSION['total'] = $total;
                     ?>
                 </tbody>
             </table>
             <div>
                 <button type="submit" name="upd" class="btn btn-secondary">Cập nhật</button>
-                <button type="submit" name="ord" class="btn btn-color">Đặt hàng</button>
+                <a href="order.php" name="ord" class="btn btn-color">Đặt hàng</a>
                 <a class="btn btn-info" href="index.php">Mua sắm tiếp</a>
             </div>
         </form>

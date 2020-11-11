@@ -36,6 +36,7 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
         <link rel="icon" href="img/logo.png">
         
@@ -43,7 +44,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        <!-- <script src="code.js"></script> -->
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script src="code.js"></script>
       </head>
   <body>
       
@@ -52,7 +54,9 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
+    <script>
+        AOS.init();
+    </script>
     <?php 
         include('header.php');
     ?>    
@@ -80,7 +84,7 @@
             <div class="col-9">
                 <div class="row">
                 <?php 
-                    echo '<div class="col-12 text-center position-absoluted"><img src="img/'.$bimage.'" height="100px"></div>';
+                    echo '<div class="col-12 text-center position-absoluted" data-aos="zoom-out" data-aos-duration="2000"><img src="img/'.$bimage.'" height="100px"></div>';
                     while($row = mysqli_fetch_array($result))
                     {
                         echo '
@@ -100,7 +104,7 @@
                                     ';
                                 else echo number_format($row['normal_price']).' VND';
                             echo '</p>
-                            <a href="addcart.php?id='.$row['gid'].'"  class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </a>
+                            <a href="addcart.php?id='.$row['gid'].'" id="buy" class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </a>
                         </div>
                     ';
                     }

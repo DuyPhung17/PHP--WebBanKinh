@@ -25,7 +25,7 @@
         <h5 class="text-color"><a class="text-secondary" href="index.php?page=o&pg=1"><i style="font-size: 25px;" class="fas fa-arrow-circle-left"></i></a>Thông tin đơn hàng #<?php echo $id ?></h5>
     </div>
 
-    <table class="table">
+    <table class="table table-hover">
         <thead class="bg-color text-white">
             <tr>
                 <th>STT</th>

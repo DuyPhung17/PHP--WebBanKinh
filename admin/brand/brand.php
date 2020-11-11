@@ -24,7 +24,7 @@
         <a class="btn btn-color" href="index.php?page=ba">Thêm mới</a>
     </div>
 
-    <table class="table">
+    <table class="table table-hover">
         <thead class="bg-color text-white">
             <tr>
                 <th>STT</th>

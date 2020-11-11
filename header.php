@@ -64,7 +64,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" id="navlink" href="account.php?">'.$_SESSION['name'].'<img class="ml-2 avt" height="30px" src="img/'.$_SESSION['img'].'"></a>
+                        <a class="nav-link active" id="navlink" href="account.php">'.$_SESSION['name'].'<img class="ml-2 avt" height="30px" src="img/'.$_SESSION['img'].'"></a>
                     </li>
                     ';
                     else echo '

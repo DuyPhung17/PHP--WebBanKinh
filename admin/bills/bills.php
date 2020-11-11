@@ -23,7 +23,7 @@
         
     </div>
 
-    <table class="table">
+    <table class="table table-hover">
         <thead class="bg-color text-white">
             <tr>
                 <th>STT</th>
@@ -48,13 +48,15 @@
                         <td>'.number_format($row['total']).' VND</td>
                         <td>'.$row['note'].'</td>';
                         if($row['status']==1)
-                            echo'<td>Đã duyệt</td>';
+                            echo'<td class="text-success">Đã duyệt</td>';
                         else echo '<td class="text-danger">Chưa duyệt</td>';
                         echo '
                         <td>
-                            <a class="btn btn-sm btn-secondary" href="index.php?page=od&id='.$row['id'].'&pg=1">Xem</a>
-                            <a class="btn btn-sm btn-color" href="#">Duyệt</a>
-                            <a class="btn btn-sm btn-danger" href="#">Xóa</a>
+                            <a class="btn btn-sm btn-secondary" href="index.php?page=od&id='.$row['id'].'&pg=1">Xem</a>';
+                            if($row['status']==1)
+                                echo'<a class="btn btn-sm btn-dark" href="bills/checkstt.php?id='.$row['id'].'&stt=1">Hủy</a>';
+                            else echo '<a class="btn btn-sm btn-color" href="bills/checkstt.php?id='.$row['id'].'&stt=0">Duyệt</a>';
+                        echo '<a class="btn btn-sm btn-danger" href="#">Xóa</a>
                         </td>
                     </tr>';
                 }
