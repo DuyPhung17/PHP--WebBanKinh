@@ -13,7 +13,7 @@
     $index = ($current_Page - 1)*$product_perPage; //Vi tri bat dau lay trong $sql LIMIT
 
     $sql = 'Select * from account join bills 
-            on account.id = bills.id_customer limit '.$index.', '.$product_perPage.'';
+            on account.id = bills.id_customer order by status limit '.$index.', '.$product_perPage.'';
     $result = mysqli_query($conn,$sql);
 ?>
 
@@ -30,7 +30,6 @@
                 <th>Ngày đặt</th>
                 <th>Khách hàng</th>
                 <th>Tổng tiền</th>
-                <th>Ghi chú</th>
                 <th>Trạng thái</th>
                 <th colspan="2"></th>
             </tr>
@@ -45,8 +44,7 @@
                         <td>'.$i++.'</td>
                         <td>'.date('d/m/Y',strtotime($row['date_order'])).'</td>
                         <td>'.$row['name'].'</td>
-                        <td>'.number_format($row['total']).' VND</td>
-                        <td>'.$row['note'].'</td>';
+                        <td>'.number_format($row['total']).' VND</td>';
                         if($row['status']==1)
                             echo'<td class="text-success">Đã duyệt</td>';
                         else echo '<td class="text-danger">Chưa duyệt</td>';

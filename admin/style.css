@@ -143,3 +143,7 @@ img{
 .back a:hover{
     background-color: blueviolet !important;
 }
+.sp{
+    font-size: 20px !important;
+    color: #101d35;
+}

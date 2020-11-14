@@ -62,7 +62,7 @@
                     <td class="text-danger">'.$sale_price.'</td>
                     <td>
                         <a class="btn btn-sm btn-secondary" href="index.php?page=pu&id='.$row['gid'].'">Cập nhật</a>
-                        <a class="btn btn-sm btn-danger" href="product/product.php?id='.$row['gid'].'">Xóa</a>
+                        <a class="btn btn-sm btn-danger" href="product/delete.php?id='.$row['gid'].'">Xóa</a>
                     </td>
                 </tr>
                 ';

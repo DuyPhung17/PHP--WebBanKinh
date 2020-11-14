@@ -164,7 +164,7 @@
           <div class="col-sm-8 pl-0 pt-3">
             <input class="btn btn-color" type="submit" name="submit" value="Thêm">
             <button class="btn btn-secondary" type="reset">Đặt lại</button>
-            <a href="index.php?page=p" class="btn btn-danger">Trở Về</a>
+            <a href="index.php?page=p&pg=1" class="btn btn-danger">Trở Về</a>
           </div>
         </div>
 

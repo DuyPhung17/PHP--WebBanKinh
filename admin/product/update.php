@@ -69,9 +69,13 @@
     //update
     if(empty($errName) && empty($errBrand) && empty($errNormal_price) && empty($errSale_price))
     {
-      $sql = 'update glasses
-                set name = "'.$name.'", id_brand= '.$brand.', image="'.$img.'" , normal_price='.$normal_price.' , sale_price='.$sale_price.'
-                where id ='.$id;
+      $sql = 'UPDATE account
+          SET name = "'.$name.'",
+          username = "'.$username.'",
+          password = "'.$password.'",
+          phone = "'.$phone.'",
+          address = "'.$address.'"
+      WHERE id ='.$_SESSION['id'];
       mysqli_query($conn, $sql);
       echo '<script type="text/javascript">swal("Cập nhật thành công!", "Sản phẩm: '.$name.'", "success");</script>';
     }
@@ -180,13 +184,13 @@
           <div class="col-sm-8 pl-0 pt-3">
             <input class="btn btn-color" type="submit" name="submit" value="Cập nhật">
             <button class="btn btn-secondary" type="reset">Đặt lại</button>
-            <a href="index.php?page=p" class="btn btn-danger">Trở Về</a>
+            <a href="index.php?page=p&pg=1" class="btn btn-danger">Trở Về</a>
           </div>
         </div>
 
     </form> 
 
-    </div>
+</div>
 <?php 
   mysqli_free_result($result_brand);
   mysqli_close($conn);

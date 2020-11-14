@@ -6,5 +6,5 @@
   $sql = 'delete from glasses where id='.$id;
   mysqli_query($conn,$sql);
   
-  header('Location: product.php');
+  header('Location: ../index.php?page=p&pg=1');
 ?>

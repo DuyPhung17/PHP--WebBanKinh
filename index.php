@@ -6,7 +6,7 @@
 
     $sql_sale = 'Select * from glasses where sale_price is not null';
     $result_sale = mysqli_query($conn,$sql_sale);
-
+    
 ?>
 
 <!doctype html>
@@ -42,11 +42,9 @@
         {
             if($_GET['stt'] == 1)
                 echo '<script type="text/javascript">swal("Chức năng giỏ hàng cần đăng nhập !", "Nếu chưa có tài khoản hãy đăng ký !", "error");</script>';
-            else echo '<script type="text/javascript">swal("Đã thêm mặt hàng này vào giỏ !", "Hãy kiểm tra giỏ hàng của bạn!", "success");</script>';
+            // else echo '<script type="text/javascript">swal("Đã thêm mặt hàng này vào giỏ !", "Hãy kiểm tra giỏ hàng của bạn!", "success");</script>';
         }
-        
-        if(isset($_GET['scs']))
-            echo '<script type="text/javascript">swal("Đăng nhập thành công!","Chào mừng '.$_SESSION['name'].' quay trở lại","success");</script>';
+
         include('header.php');
     ?>
 
@@ -180,6 +178,9 @@
 </div>
 <!----------------------- VIII. Footer -->
 <?php include('footer.php') ?>
+<div id="BT">
+    <a href="ThucHanhPHP">Bài tập</a>
+</div>
 </body>
 </html>
 

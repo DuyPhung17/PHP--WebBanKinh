@@ -11,8 +11,7 @@
                 $_SESSION['cart'][$id]++;
             else   
                 $_SESSION['cart'][$id] = 1;
-            header('Location: index.php?stt=2');
         }
-        else header('Location: index.php');
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     }    
 ?>

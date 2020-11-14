@@ -220,7 +220,7 @@
 
     </form> 
 
-    </div>
+</div>
 
     <!----------------------- VIII. Footer -->
     <?php include('footer.php') ?>

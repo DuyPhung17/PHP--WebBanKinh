@@ -19,7 +19,6 @@
 <div class="container detail">
     <div class="top">
         <h4 class="text-color"><i class="fa fa-user"></i> QUẢN LÝ TÀI KHOẢN</h4>
-        <a class="btn btn-color" href="#">Thêm mới</a>
     </div>
 
     <table class="table">
@@ -55,8 +54,9 @@
                         else echo '<td>Khách hàng</td>';
                         echo '
                         <td>
-                            <a class="btn btn-sm btn-secondary" href="#">Cập nhật</a>
-                            <a class="btn btn-sm btn-danger" href="#">Xóa</a>
+                            <a class="btn btn-sm btn-secondary" href="index.php?page=au&id='.$row['id'].'">Cập nhật</a>';
+                            if($row['admin']!=1)
+                            echo '<a class="btn btn-sm btn-danger" href="account/delete.php?id='.$row['id'].'">Xóa</a>
                         </td>
                     </tr>';
                 }

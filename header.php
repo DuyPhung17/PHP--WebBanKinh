@@ -21,7 +21,9 @@
             $_SESSION['img'] = $row['image'];
             if($row['admin']==1)  
                 header('location: admin/index.php');
-            else header('location: index.php?scs=1');
+            else
+                echo '<script type="text/javascript">swal("Đăng nhập thành công!","Chào mừng '.$_SESSION['name'].' quay trở lại","success");</script>';
+
         }
         else echo '<script type="text/javascript">swal("Đăng nhập thất bại!", "Tên đăng nhập hoặc mật khẩu không đúng !", "error");</script>';
     }
