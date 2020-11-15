@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 11, 2020 at 03:03 PM
+-- Generation Time: Nov 15, 2020 at 05:59 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -49,7 +49,7 @@ INSERT INTO `account` (`id`, `name`, `username`, `password`, `admin`, `phone`, `
 (4, 'Nguyễn Ngọc Hoàng', 'hoang', '123', NULL, '0913320382', 'Phú Yên', 'avatar.png'),
 (5, 'Vũ Ngọc Đoàn', 'doan', '123', NULL, '01625320382', 'Nha Trang', 'avatar.png'),
 (6, 'Võ Minh Toàn', 'toan', '123', NULL, '01625320333', 'Quảng Nam', 'avatar.png'),
-(11, 'Phùng Bá Duy', 'duy2', '123', NULL, '0868478729', 'Nha Trang', 'avatar.png');
+(11, 'Phùng Bá Duy', 'duy2', '123', NULL, '0868478729', 'Nha Trang', 'background.jpg');
 
 -- --------------------------------------------------------
 
@@ -70,14 +70,17 @@ CREATE TABLE `bills` (
 --
 
 INSERT INTO `bills` (`id`, `id_customer`, `date_order`, `total`, `status`) VALUES
-(1, 2, '2020-11-06', 160000, b'0'),
-(2, 3, '2020-11-07', 400000, b'0'),
-(3, 4, '2020-11-02', 520000, b'0'),
-(4, 5, '2020-11-08', 420000, b'0'),
-(5, 6, '2020-11-06', 220000, b'0'),
+(1, 2, '2020-11-06', 160000, b'1'),
+(2, 3, '2020-11-07', 400000, b'1'),
+(3, 4, '2020-11-02', 520000, b'1'),
+(4, 5, '2020-11-08', 420000, b'1'),
+(5, 6, '2020-11-06', 220000, b'1'),
 (22, 2, '2020-11-11', 12825000, b'1'),
 (21, 2, '2020-11-11', 8720000, b'1'),
-(23, 2, '2020-11-11', 9953000, b'0');
+(23, 2, '2020-11-11', 9953000, b'0'),
+(26, 11, '2020-11-14', 15836000, b'1'),
+(27, 11, '2020-11-14', 7479000, b'1'),
+(28, 11, '2020-11-14', 8066000, b'0');
 
 -- --------------------------------------------------------
 
@@ -113,7 +116,14 @@ INSERT INTO `bill_detail` (`id`, `id_bill`, `id_glasses`, `quantity`, `normal_pr
 (28, 23, 40, 1, 6780000),
 (29, 24, 45, 1, 3173000),
 (30, 24, 40, 1, 6780000),
-(31, 25, 12, 1, 2737000);
+(31, 25, 12, 1, 2737000),
+(32, 26, 8, 1, 3747000),
+(33, 26, 5, 2, 4820000),
+(34, 26, 15, 1, 2449000),
+(35, 27, 45, 1, 3173000),
+(36, 27, 47, 1, 4306000),
+(37, 28, 1, 1, 3246000),
+(38, 28, 5, 1, 4820000);
 
 -- --------------------------------------------------------
 
@@ -175,7 +185,6 @@ INSERT INTO `glasses` (`id`, `name`, `id_brand`, `image`, `normal_price`, `sale_
 (9, 'Fendi FFM30', 3, 'fendi7.png', 4880000, NULL, 5, NULL),
 (10, 'Fendi FFM70', 3, 'fendi8.png', 4106000, NULL, 5, NULL),
 (12, 'Coach LH023', 1, 'Coach2.png', 2737000, NULL, 4, b'1'),
-(13, 'Coach LH091', 1, 'Coach3.png', 3024000, 2920000, 3, NULL),
 (14, 'Coach LH037', 1, 'Coach4.png', 2667000, NULL, 4, NULL),
 (15, 'Coach LH044', 1, 'Coach5.png', 2449000, 2038000, 4, NULL),
 (16, 'D&G DG441', 2, 'd&g1.png', 5124000, NULL, 5, NULL),
@@ -285,19 +294,19 @@ ALTER TABLE `glasses`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `bills`
 --
 ALTER TABLE `bills`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `bill_detail`
 --
 ALTER TABLE `bill_detail`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `brand`
@@ -309,7 +318,7 @@ ALTER TABLE `brand`
 -- AUTO_INCREMENT for table `glasses`
 --
 ALTER TABLE `glasses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- Constraints for dumped tables
