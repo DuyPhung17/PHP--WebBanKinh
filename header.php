@@ -49,6 +49,9 @@
                     <a class="nav-link active" id="navlink" href="index.php">Trang Chủ</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" id="navlink" href="about.html">Giới Thiệu</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" id="navlink" href="brand.php?id=7&pg=1">Sản Phẩm</a>
                 </li>
                 <li class="nav-item">
