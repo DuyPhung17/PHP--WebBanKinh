@@ -89,8 +89,14 @@
     //add new
     if(empty($errName) && empty($errAddress) && empty($errPhone) && empty($errUsername) && empty($errPassword) && empty($errPasswordRT))
     {
-      $sql = 'UPDATE account SET
-                ';
+      $sql = 'UPDATE account
+              SET name = "'.$name.'",
+                  username = "'.$username.'",
+                  password = "'.$password.'",
+                  phone = "'.$phone.'",
+                  address = "'.$address.'",
+                  image = "'.$img.'"
+              WHERE id ='.$_SESSION['id'];
       mysqli_query($conn, $sql);
       $check = 1;
       echo '<script type="text/javascript">swal("Tạo tài khoản thành công!", "Tên tài khoản: '.$name.'", "success");</script>';
@@ -188,10 +194,30 @@
         ?>
         
         <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Ảnh đại diện: </label>
+            <div class="custom-file col-sm-8">
+              <input type="file" class="custom-file-input" value="<?php if(isset($img)) echo $img ?>" name="img" id="img" accept="image/*" onchange="showPreview(event);">
+              <label class="custom-file-label" for="inputGroupFile01">Chọn ảnh</label>
+            </div>
+            <!--script de hien thi ten anh-->
+            <script>
+            $(".custom-file-input").on("change", function() {
+              var fileName = $(this).val().split("\\").pop();
+              $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            });
+            </script>
+            <!--Phan xem truoc anh-->
+            <div class="row">
+              <div class="col-sm-4"></div>
+              <div class="col-sm-8"><img id="img_prv" <?php if(isset($img)) echo 'src="../img/'.$img.'"'?>></div>
+            </div>
+        </div>
+        
+        <div class="form-group row">
         <p class="col-sm-4"></p>
           <div class="col-sm-8 pl-0 pt-3">
             <input class="btn btn-color" type="submit" name="submit" value="Cập nhật">
-            <button class="btn btn-secondary" type="reset">Đặt lại</button>
+            <a class="btn btn-secondary" href="index.php?page=a&pg=1">Trở về</a>
           </div>
         </div>
 

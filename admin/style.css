@@ -133,6 +133,8 @@ img{
     height: auto;
 }
 #id_prv{
+    margin-left: 100px;
+    margin-top: 20px;
     height: 150px;
 }
 .top{

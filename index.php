@@ -44,7 +44,10 @@
                 echo '<script type="text/javascript">swal("Chức năng giỏ hàng cần đăng nhập !", "Nếu chưa có tài khoản hãy đăng ký !", "error");</script>';
             // else echo '<script type="text/javascript">swal("Đã thêm mặt hàng này vào giỏ !", "Hãy kiểm tra giỏ hàng của bạn!", "success");</script>';
         }
-
+        if(isset($_GET['log']))
+        {
+            echo '<script type="text/javascript">swal("Vui lòng đăng nhập lại !", "Bạn vừa cập nhật tài khoản !", "info");</script>';
+        }
         include('header.php');
     ?>
 
