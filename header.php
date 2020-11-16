@@ -117,6 +117,7 @@
                                         <label class="form-check-label text-color">Ghi nhớ đăng nhập</label>
                                         <a href="#" class="m-5 text-color">Quên mật khẩu</a>
                                     </div>
+                                    <p class="text-center mt-2"><i>(Admin: duy-123 &nbsp; || &nbsp; Guest: duy2-123)</i></p>
                                     <button type="submit" name="login" id="loginbtn" class="btn btn-color btn-block mt-3">Đăng Nhập</button>
                                     <a id="signup" href="register.php" class="btn btn-outline-color btn-block">Đăng Ký</a>
                                 </form>
