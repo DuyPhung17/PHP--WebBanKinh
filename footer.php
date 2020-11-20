@@ -18,7 +18,9 @@
                 <p>Kính Thời Trang</p>
                 <p>Phù Hợp Mọi Đối Tượng</p>
             </div>
-            <div class="col-12 bg-light text-color pt-2 pb-2"><b><i class="fa fa-copyright"></i> Phùng Bá Duy 2020</b></div>
+            <div class="col-12 bg-light text-dark pt-2 pb-2"><b>Thực hiện bởi <img height="40px" src="img/tomato.png" class="ml-2">
+                <i class="fa fa-copyright" aria-hidden="true"></i>2020</b>
+            </div>
         </div>
     </div>
 </footer>

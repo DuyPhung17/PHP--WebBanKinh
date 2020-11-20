@@ -2,10 +2,10 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 15, 2020 at 05:59 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.10
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th10 20, 2020 lúc 03:40 PM
+-- Phiên bản máy phục vụ: 10.4.14-MariaDB
+-- Phiên bản PHP: 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_bankinh`
+-- Cơ sở dữ liệu: `db_bankinh`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `account`
+-- Cấu trúc bảng cho bảng `account`
 --
 
 CREATE TABLE `account` (
@@ -39,7 +39,7 @@ CREATE TABLE `account` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `account`
+-- Đang đổ dữ liệu cho bảng `account`
 --
 
 INSERT INTO `account` (`id`, `name`, `username`, `password`, `admin`, `phone`, `address`, `image`) VALUES
@@ -49,12 +49,13 @@ INSERT INTO `account` (`id`, `name`, `username`, `password`, `admin`, `phone`, `
 (4, 'Nguyễn Ngọc Hoàng', 'hoang', '123', NULL, '0913320382', 'Phú Yên', 'avatar.png'),
 (5, 'Vũ Ngọc Đoàn', 'doan', '123', NULL, '01625320382', 'Nha Trang', 'avatar.png'),
 (6, 'Võ Minh Toàn', 'toan', '123', NULL, '01625320333', 'Quảng Nam', 'avatar.png'),
-(11, 'Phùng Bá Duy', 'duy2', '123', NULL, '0868478729', 'Nha Trang', 'background.jpg');
+(11, 'Phùng Bá Duy', 'duy2', '123', NULL, '0868478729', 'Nha Trang', 'background.jpg'),
+(15, 'Đỗ Thúy Quỳnh', 'quynh', '123', NULL, '0868478729', 'Phú Yên', 'avatar.png');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bills`
+-- Cấu trúc bảng cho bảng `bills`
 --
 
 CREATE TABLE `bills` (
@@ -66,7 +67,7 @@ CREATE TABLE `bills` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `bills`
+-- Đang đổ dữ liệu cho bảng `bills`
 --
 
 INSERT INTO `bills` (`id`, `id_customer`, `date_order`, `total`, `status`) VALUES
@@ -77,15 +78,18 @@ INSERT INTO `bills` (`id`, `id_customer`, `date_order`, `total`, `status`) VALUE
 (5, 6, '2020-11-06', 220000, b'1'),
 (22, 2, '2020-11-11', 12825000, b'1'),
 (21, 2, '2020-11-11', 8720000, b'1'),
-(23, 2, '2020-11-11', 9953000, b'0'),
+(23, 2, '2020-11-11', 9953000, b'1'),
 (26, 11, '2020-11-14', 15836000, b'1'),
 (27, 11, '2020-11-14', 7479000, b'1'),
-(28, 11, '2020-11-14', 8066000, b'0');
+(28, 11, '2020-11-14', 8066000, b'0'),
+(29, 11, '2020-11-16', 10630000, b'0'),
+(30, 11, '2020-11-19', 9229000, b'0'),
+(31, 15, '2020-11-20', 9829000, b'0');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bill_detail`
+-- Cấu trúc bảng cho bảng `bill_detail`
 --
 
 CREATE TABLE `bill_detail` (
@@ -97,7 +101,7 @@ CREATE TABLE `bill_detail` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `bill_detail`
+-- Đang đổ dữ liệu cho bảng `bill_detail`
 --
 
 INSERT INTO `bill_detail` (`id`, `id_bill`, `id_glasses`, `quantity`, `normal_price`) VALUES
@@ -123,12 +127,18 @@ INSERT INTO `bill_detail` (`id`, `id_bill`, `id_glasses`, `quantity`, `normal_pr
 (35, 27, 45, 1, 3173000),
 (36, 27, 47, 1, 4306000),
 (37, 28, 1, 1, 3246000),
-(38, 28, 5, 1, 4820000);
+(38, 28, 5, 1, 4820000),
+(39, 29, 17, 1, 3747000),
+(40, 29, 54, 1, 6883000),
+(41, 30, 12, 1, 2737000),
+(42, 30, 1, 2, 3246000),
+(43, 31, 2, 2, 3546000),
+(44, 31, 12, 1, 2737000);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `brand`
+-- Cấu trúc bảng cho bảng `brand`
 --
 
 CREATE TABLE `brand` (
@@ -139,7 +149,7 @@ CREATE TABLE `brand` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `brand`
+-- Đang đổ dữ liệu cho bảng `brand`
 --
 
 INSERT INTO `brand` (`id`, `name`, `image`, `country`) VALUES
@@ -157,7 +167,31 @@ INSERT INTO `brand` (`id`, `name`, `image`, `country`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `glasses`
+-- Cấu trúc bảng cho bảng `comment`
+--
+
+CREATE TABLE `comment` (
+  `id` int(11) NOT NULL,
+  `id_product` int(11) DEFAULT NULL,
+  `id_user` int(11) DEFAULT NULL,
+  `text` varchar(500) COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `rate` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `comment`
+--
+
+INSERT INTO `comment` (`id`, `id_product`, `id_user`, `text`, `rate`) VALUES
+(2, 1, 11, 'Kính rất đẹp, tôi mua cái thứ 10 rồi vẫn ưng', 5),
+(3, 1, 2, 'Đeo vào đẹp trai hẳn !!!', 4),
+(4, 1, 3, 'Mắc quá ai mua -_- cho 3 sao thôi', 3),
+(5, 12, 15, 'Kính vừa đẹp vừa rẻ.', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `glasses`
 --
 
 CREATE TABLE `glasses` (
@@ -172,7 +206,7 @@ CREATE TABLE `glasses` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `glasses`
+-- Đang đổ dữ liệu cho bảng `glasses`
 --
 
 INSERT INTO `glasses` (`id`, `name`, `id_brand`, `image`, `normal_price`, `sale_price`, `rating`, `new`) VALUES
@@ -249,83 +283,104 @@ INSERT INTO `glasses` (`id`, `name`, `id_brand`, `image`, `normal_price`, `sale_
 (75, 'Versace VE084', 10, 'versace8.png', 7620000, NULL, 5, NULL);
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `account`
+-- Chỉ mục cho bảng `account`
 --
 ALTER TABLE `account`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`);
 
 --
--- Indexes for table `bills`
+-- Chỉ mục cho bảng `bills`
 --
 ALTER TABLE `bills`
   ADD PRIMARY KEY (`id`),
   ADD KEY `bills_ibfk_1` (`id_customer`);
 
 --
--- Indexes for table `bill_detail`
+-- Chỉ mục cho bảng `bill_detail`
 --
 ALTER TABLE `bill_detail`
   ADD PRIMARY KEY (`id`),
   ADD KEY `bill_detail_ibfk_2` (`id_glasses`);
 
 --
--- Indexes for table `brand`
+-- Chỉ mục cho bảng `brand`
 --
 ALTER TABLE `brand`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `glasses`
+-- Chỉ mục cho bảng `comment`
+--
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_product` (`id_product`),
+  ADD KEY `id_user` (`id_user`);
+
+--
+-- Chỉ mục cho bảng `glasses`
 --
 ALTER TABLE `glasses`
   ADD PRIMARY KEY (`id`),
   ADD KEY `glasses_ibfk_1` (`id_brand`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `account`
+-- AUTO_INCREMENT cho bảng `account`
 --
 ALTER TABLE `account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `bills`
+-- AUTO_INCREMENT cho bảng `bills`
 --
 ALTER TABLE `bills`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
--- AUTO_INCREMENT for table `bill_detail`
+-- AUTO_INCREMENT cho bảng `bill_detail`
 --
 ALTER TABLE `bill_detail`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
--- AUTO_INCREMENT for table `brand`
+-- AUTO_INCREMENT cho bảng `brand`
 --
 ALTER TABLE `brand`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- AUTO_INCREMENT for table `glasses`
+-- AUTO_INCREMENT cho bảng `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT cho bảng `glasses`
 --
 ALTER TABLE `glasses`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `glasses`
+-- Các ràng buộc cho bảng `comment`
+--
+ALTER TABLE `comment`
+  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`id_product`) REFERENCES `glasses` (`id`),
+  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `account` (`id`);
+
+--
+-- Các ràng buộc cho bảng `glasses`
 --
 ALTER TABLE `glasses`
   ADD CONSTRAINT `glasses_ibfk_1` FOREIGN KEY (`id_brand`) REFERENCES `brand` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;

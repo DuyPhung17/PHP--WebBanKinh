@@ -69,14 +69,14 @@ span{
 /*sidebar*/
 .sidebar{
     margin-left: 0px;
-    height: 580px;
+    height: 105%;
     background-color: #101d35;
 }
 .sidebar ul{
     padding-left: 0;
 }
 .logout a{
-    margin-top: 140px;
+    margin-top: 55%;
     background-color: var(--mainColor) !important;
 }
 i{
@@ -148,4 +148,7 @@ img{
 .sp{
     font-size: 20px !important;
     color: #101d35;
+}
+.search_icon{
+    margin-right: auto;
 }

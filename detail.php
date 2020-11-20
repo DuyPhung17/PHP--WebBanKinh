@@ -24,6 +24,26 @@
     $sqllq = 'select * from glasses where id_brand ='.$id_brand.' limit '.$index.', '.$product_perPage.'';
     $resultlq = mysqli_query($conn,$sqllq);
 
+    //Comment
+    $sql_cmt = 'select text,rate, account.name as aname, account.image as aimg from comment join glasses
+                    on comment.id_product = glasses.id
+                    join account on comment.id_user = account.id
+                where glasses.id = '.$id;
+    $result_cmt = mysqli_query($conn,$sql_cmt);
+
+    //Add Comment
+    if(isset($_POST['submit']))
+    {
+        $text = $_POST['text'];
+        $rate = $_POST['rate'];
+        if(!empty($text))
+        {   
+            $sql_addcmt = 'INSERT INTO comment(id_product, id_user, text, rate) 
+                            VALUES ('.$id.','.$_SESSION['id'].',"'.$text.'",'.$rate.')';
+            mysqli_query($conn,$sql_addcmt);
+        } 
+        header("Refresh:0");
+    }
 ?>
 <!doctype html>
 <html lang="en">
@@ -57,103 +77,179 @@
         include('header.php');
     ?>   
 
-    <!--Detail-->
     <div class="container detail">
-        <div class="row">
-            <?php 
-                echo '
-                <div class="col-sm-6">
-                    <img class="detail-img" src="img/'.$row['image'].'">
-                </div>
+        <!--Detail-->
+            <div class="row">
+                <?php 
+                    echo '
+                    <div class="col-sm-6">
+                        <img class="detail-img" src="img/'.$row['image'].'">
+                    </div>
 
-                <div class="col-sm-6 detail-content">
-                    <div class="product-body">
-                        <h1 class="product-name">'.$row['gname'].'</h1>';
-                        if(!empty($row['sale_price']))
+                    <div class="col-sm-6 detail-content">
+                        <div class="product-body">
+                            <h1 class="product-name">'.$row['gname'].'</h1>';
+                            if(!empty($row['sale_price']))
+                                echo '
+                                <del class="price-old">'.number_format($row['normal_price']).' VND</del>
+                                <p class="price-sale text-danger">'.number_format($row['sale_price']).' VND</p>
+                                ';
+                            else echo '<p class="price-unit">'.number_format($row['normal_price']).' VND</p>';
+                            echo ' <p>Thương hiệu: <img height="40px" src="img/'.$row['bimage'].'"></p>';
+                            echo '                    
+                            <p class="price-unit"></p>
+                            <p>
+                                Đánh giá: ';
+                                for($i=0; $i<$row['rating']; $i++)
+                                    echo ' <i class="fa fa-star"></i>'; 
+                            echo '</p>';
                             echo '
-                            <del class="price-old">'.number_format($row['normal_price']).' VND</del>
-                            <p class="price-sale text-danger">'.number_format($row['sale_price']).' VND</p>
-                            ';
-                        else echo '<p class="price-unit">'.number_format($row['normal_price']).' VND</p>';
-                        echo ' <p>Thương hiệu: <img height="40px" src="img/'.$row['bimage'].'"></p>';
-                        echo '                    
-                        <p class="price-unit"></p>
-                        <p>
-                            Đánh giá: ';
-                            for($i=0; $i<$row['rating']; $i++)
-                                echo ' <i class="fa fa-star"></i>'; 
-                        echo '</p>';
+                        </div>
+
+                        <div class="product-desc">
+                            <p>Dòng kính mắt này được nhập khẩu từ châu Âu và Bắc Mỹ, mang phong cách thời thượng, hiện đại, phù hợp
+                            với những doanh nhân thành đạt hay những chuyến đi dã ngoại hoặc đến những bãi biển. Với thiết kế chắc chắn,
+                            tỉ mỉ, chất liệu gọn nhẹ sẽ mang lại cho bạn cảm giác thoải mái và chắc chắn khi đeo.</p>
+                        </div>
+                        <a href="addcart.php?id='.$id.'" id="loginbtn" class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </a>';
+                        if(!empty($_SESSION['id']))
+                            echo '<button type="button" id="signup" class="btn btn-outline-color ml-2" data-toggle="modal" data-target="#cmt">Đánh giá</button>';
                         echo '
                     </div>
-
-                    <div class="product-desc">
-                        <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo ms id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe.</p>
-                    </div>
-                    <a href="addcart.php?id='.$id.'" id="loginbtn" class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </a>
-                    <button type="button" id="signup" class="btn btn-outline-color">Đánh giá</button>
-                </div>
-                    ';
-            ?>
-        </div>
-
-        <div style="padding-left: 50px;">
-            <h5 class="text-color mt-5">SẢN PHẨM KHÁC CÙNG THƯƠNG HIỆU </h5>
-            <hr id="hra_2">
-        </div>
-        <div class="row">
-        <?php 
-                if(mysqli_num_rows($resultlq) > 0)
+                        ';
+                ?>
+            </div>
+        <!--Detail-->
+        
+        <!--Comment-->
+            <div style="padding-left: 50px;">
+                <h5 class="text-color mt-5">ĐÁNH GIÁ TỪ KHÁCH HÀNG </h5>
+                <hr id="hra_2">
+            </div>
+            <?php 
+                if(mysqli_num_rows($result_cmt) > 0)
                 {
-                    while($row = mysqli_fetch_array($resultlq))
+                    while($row = mysqli_fetch_array($result_cmt))
                     {
                         echo '
-                        <div class="col-md-3 product_item">
-                            <a href="detail.php?id='.$row['id'].'"><img class="product_image" src="./img/'.$row['image'].'"></a>
-                            <h3 class="text-color">'.$row['name'].'</h3>
-                            <p class="price">'.number_format($row['normal_price']).' VND</p>
-                            <a href="addcart.php?id='.$row['id'].'"  class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </a>
+                        <div class="comment_box mt-3">
+                            <img src="img/'.$row['aimg'].'">
+                            <div class="comment_text">
+                                <h5 class="font-weight-bold">'.$row['aname'].'</h6>
+                                <p>'.$row['text'].'</p>
+                                <p>Đánh giá:';
+                                for($i=0; $i<$row['rate']; $i++)
+                                        echo ' <i class="fa fa-star"></i>'; 
+                                echo'</p>
+                            </div>
                         </div>
                         ';
                     }
                 }
+                else echo '<p class="ml-5">Chưa có đánh giá !</p>';
             ?>
-        </div>
+        <!--Comment-->
+        <!--Form danh gia-->
+            <div class="modal fade" id="cmt">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="cmtform">
+                                <a href="index.html" data-dismiss="modal"><i class="fa fa-times-circle"></i></a>
+                                <h4 class="text-center font-weight-bold text-color mt-3">ĐÁNH GIÁ SẢN PHẨM</h4>
+                                <form method="post" action="">
+                                <div class="form-group">
+                                    <div class="comment_box_form">
+                                    <?php
+                                        echo'
+                                        <img src="img/'.$_SESSION['img'].'">
+                                        <div class="comment_text_form">
+                                            <h6 class="font-weight-bold">'.$_SESSION['name'].'</h6>
+                                            <textarea name="text" class="form-control" cols="50" rows="5"></textarea>
+                                        </div>';
+                                    ?>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-5 text-right">Xếp hạng: </label>
+                                    <select name="rate" class="form-control col-2 select_rate">
+                                      <option value="5">5 &#xf005;</option>
+                                      <option value="4">4 &#xf005;</option>
+                                      <option value="3">3 &#xf005;</option>
+                                      <option value="2">2 &#xf005;</option>
+                                      <option value="1">1 &#xf005;</option>
+                                    </select>
+                                </div>
+                                <button type="submit" name="submit" class="btn btn-color btn-block comment_box_btn">Đánh giá</button>
+                                </form>
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!--Form danh gia-->
+
+        <!--Sản phẩm khác-->
+            <div style="padding-left: 50px;">
+                <h5 class="text-color mt-5">SẢN PHẨM KHÁC CÙNG THƯƠNG HIỆU </h5>
+                <hr id="hra_2">
+            </div>
+            <div class="row">
+            <?php 
+                    if(mysqli_num_rows($resultlq) > 0)
+                    {
+                        while($row = mysqli_fetch_array($resultlq))
+                        {
+                            echo '
+                            <div class="col-md-3 product_item">
+                                <a href="detail.php?id='.$row['id'].'&pg=1"><img class="product_image" src="./img/'.$row['image'].'"></a>
+                                <h3 class="text-color">'.$row['name'].'</h3>
+                                <p class="price">'.number_format($row['normal_price']).' VND</p>
+                                <a href="addcart.php?id='.$row['id'].'"  class="btn bg-color text-white">Thêm vào <i class="fa fa-shopping-cart"></i> </a>
+                            </div>
+                            ';
+                        }
+                    }
+                ?>
+            </div>
+        <!--Sản phẩm khác--> 
 
         <!--Phan trang-->
-        <ul class="pagination mx-auto" style="width: 30%">
-            <?php 
-            //Gan nut truoc
-            if($_GET['pg']>1)
-                echo '        
-                <li class="page-item">
-                    <a class="page-link" href="?id='.$id.'&pg='.($_GET['pg']-1).'">Trước</a>
-                </li>';
-            else echo '        
-                <li class="page-item disabled">
-                    <a class="page-link" href="#">Trước</a>
-                </li>';
-            //Gan cac trang
-            for($i=1;$i<=$total_Page;$i++)
-            {   
-                if($i==$_GET['pg'])
-                echo '        
-                <li class="page-item active">
-                    <a class="page-link" href="?id='.$id.'&pg='.$i.'">'.$i.'<span class="sr-only">(current)</span></a>
-                </li>';
-                else echo '<li class="page-item"><a class="page-link" href="?id='.$id.'&pg='.$i.'">'.$i.'</a></li>';
-            }
-            //Gan nut sau
-            if($_GET['pg']<$total_Page)
-                echo '        
-                <li class="page-item">
-                    <a class="page-link" href="?id='.$id.'&pg='.($_GET['pg']+1).'">Sau</a>
-                </li>';
-            else echo '        
-                <li class="page-item disabled">
-                    <a class="page-link" href="#">Sau</a>
-                </li>';
-            ?>
-        </ul>
+            <ul class="pagination mx-auto" style="width: 30%">
+                <?php 
+                //Gan nut truoc
+                if($_GET['pg']>1)
+                    echo '        
+                    <li class="page-item">
+                        <a class="page-link" href="?id='.$id.'&pg='.($_GET['pg']-1).'">Trước</a>
+                    </li>';
+                else echo '        
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">Trước</a>
+                    </li>';
+                //Gan cac trang
+                for($i=1;$i<=$total_Page;$i++)
+                {   
+                    if($i==$_GET['pg'])
+                    echo '        
+                    <li class="page-item active">
+                        <a class="page-link" href="?id='.$id.'&pg='.$i.'">'.$i.'<span class="sr-only">(current)</span></a>
+                    </li>';
+                    else echo '<li class="page-item"><a class="page-link" href="?id='.$id.'&pg='.$i.'">'.$i.'</a></li>';
+                }
+                //Gan nut sau
+                if($_GET['pg']<$total_Page)
+                    echo '        
+                    <li class="page-item">
+                        <a class="page-link" href="?id='.$id.'&pg='.($_GET['pg']+1).'">Sau</a>
+                    </li>';
+                else echo '        
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">Sau</a>
+                    </li>';
+                ?>
+            </ul>
+        <!--Phan trang-->
         </div>
     </div>
 

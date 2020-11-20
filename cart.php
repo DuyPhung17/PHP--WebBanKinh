@@ -124,10 +124,17 @@
                             <tr>
                                 <td>1</td>
                                 <td><img height="40px" src="img/'.$row['gimage'].'"/> '.$row['gname'].'</td>
-                                <td><img height="40px" src="img/'.$row['bimage'].'"/></td>
-                                <td>'.number_format($row['normal_price']).' VND</td>
-                                <td><input type="number" min=1 name="qty['.$id.']" value="'.$qty.'" style="width:50px"></td>
-                                <td>'.number_format($row['normal_price']*$qty).' VND</td>
+                                <td><img height="40px" src="img/'.$row['bimage'].'"/></td>';
+                                if(!empty($row['sale_price']))
+                                echo '
+                                    <td>'.number_format($row['sale_price']).' VND</td>
+                                    <td><input type="number" min=1 name="qty['.$id.']" value="'.$qty.'" style="width:50px"></td>
+                                    <td>'.number_format($row['sale_price']*$qty).' VND</td>';
+                                else echo '
+                                    <td>'.number_format($row['normal_price']).' VND</td>
+                                    <td><input type="number" min=1 name="qty['.$id.']" value="'.$qty.'" style="width:50px"></td>
+                                    <td>'.number_format($row['normal_price']*$qty).' VND</td>';
+                                echo'
                                 <td>
                                     <a class="btn btn-sm btn-danger" href="cart.php?action=del&id='.$id.'">Xóa</a>
                                 </td>

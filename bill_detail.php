@@ -95,8 +95,11 @@
                 echo '
                 <tr>
                     <td>'.$row['name'].'</td>
-                    <td>'.$row['quantity'].'</td>
-                    <td>'.number_format($row['normal_price']).' VND</td>
+                    <td>'.$row['quantity'].'</td>';
+                    if(!empty($row['sale_price']))
+                        echo '<td>'.number_format($row['sale_price']).' VND</td>';
+                    else echo '<td>'.number_format($row['normal_price']).' VND</td>';
+                    echo'
                 </tr>';
             }
             echo '</tbody>

@@ -21,9 +21,10 @@
             $_SESSION['img'] = $row['image'];
             if($row['admin']==1)  
                 header('location: admin/index.php');
-            else
+            else{
                 echo '<script type="text/javascript">swal("Đăng nhập thành công!","Chào mừng '.$_SESSION['name'].' quay trở lại","success");</script>';
-
+                header('location: index.php?sus=1');
+            }
         }
         else echo '<script type="text/javascript">swal("Đăng nhập thất bại!", "Tên đăng nhập hoặc mật khẩu không đúng !", "error");</script>';
     }
@@ -47,9 +48,6 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link active" id="navlink" href="index.php">Trang Chủ</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="navlink" href="about.html">Giới Thiệu</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="navlink" href="brand.php?id=7&pg=1">Sản Phẩm</a>

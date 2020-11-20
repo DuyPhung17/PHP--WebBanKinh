@@ -86,7 +86,7 @@
           move_uploaded_file($_FILES['img']['tmp_name'],$target_file);
         }
     }
-    else $img = 'avatar.png';
+    if(empty($img)) $img = 'avatar.png';
     //update
     if(empty($errName) && empty($errAddress) && empty($errPhone) && empty($errUsername) && empty($errPassword) && empty($errPasswordRT))
     {

@@ -44,6 +44,10 @@
                 echo '<script type="text/javascript">swal("Chức năng giỏ hàng cần đăng nhập !", "Nếu chưa có tài khoản hãy đăng ký !", "error");</script>';
             // else echo '<script type="text/javascript">swal("Đã thêm mặt hàng này vào giỏ !", "Hãy kiểm tra giỏ hàng của bạn!", "success");</script>';
         }
+        if(isset($_GET['sus']))
+        {
+            echo '<script type="text/javascript">swal("Đăng nhập thành công!","Chào mừng '.$_SESSION['name'].' quay trở lại","success");</script>';
+        }
         if(isset($_GET['log']))
         {
             echo '<script type="text/javascript">swal("Vui lòng đăng nhập lại !", "Bạn vừa cập nhật tài khoản !", "info");</script>';
@@ -72,17 +76,17 @@
                 <img src="./img/slide2.jpg"  id="slide-after">
                 <div class="carousel-caption">
                     <h1 class="display-4">MẪU KÍNH MỚI TỪ RAY-BAN</h1>
-                    <a type="button" class="btn btn-outline-light btn-md" href="brand.php?id=7">
+                    <a type="button" class="btn btn-outline-light btn-md" href="brand.php?id=7&pg=1">
                         Xem Thêm</a>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="./img/slide3.jpg"  id="slide-after">
                 <div class="carousel-caption">
-                    <h1 class="display-4">TOP BÁN CHẠY 2020</h1>
-                    <button type="button" class="btn btn-outline-light btn-md">
+                    <h1 class="display-4">BỘ SƯU TẬP VERSACE 2020</h1>
+                    <a href="brand.php?id=10&pg=1" type="button" class="btn btn-outline-light btn-md">
                         Xem Thêm
-                    </button>
+                    </a>
                 </div>
             </div>
 
@@ -139,7 +143,7 @@
                     {
                         echo '
                         <div class="col-md-3 product_item">
-                            <a href="detail.php?id='.$row['id'].'"><img class="product_image" src="./img/'.$row['image'].'"></a>
+                            <a href="detail.php?id='.$row['id'].'&pg=1"><img class="product_image" src="./img/'.$row['image'].'"></a>
                             <h3 class="text-color">'.$row['name'].'</h3>
                             <p class="rating">
                                 Đánh giá: ';
@@ -181,9 +185,7 @@
 </div>
 <!----------------------- VIII. Footer -->
 <?php include('footer.php') ?>
-<div id="BT">
-    <a href="ThucHanhPHP">Bài tập</a>
-</div>
+
 </body>
 </html>
 
