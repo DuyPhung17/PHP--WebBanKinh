@@ -69,13 +69,13 @@
     //update
     if(empty($errName) && empty($errBrand) && empty($errNormal_price) && empty($errSale_price))
     {
-      $sql = 'UPDATE account
+      $sql = 'UPDATE glasses
           SET name = "'.$name.'",
-          username = "'.$username.'",
-          password = "'.$password.'",
-          phone = "'.$phone.'",
-          address = "'.$address.'"
-      WHERE id ='.$_SESSION['id'];
+          id_brand = "'.$brand.'",
+          normal_price = "'.$normal_price.'",
+          sale_price = "'.$sale_price.'",
+          image = "'.$img.'"
+      WHERE id ='.$id;
       mysqli_query($conn, $sql);
       echo '<script type="text/javascript">swal("Cập nhật thành công!", "Sản phẩm: '.$name.'", "success");</script>';
     }
@@ -106,7 +106,11 @@
             <option value="">Chọn thương hiệu</option>
             <?php 
               while($row = mysqli_fetch_array($result_brand))
-                echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';
+              {
+                echo '<option value="'.$row['id'].'"';
+                  if(isset($brand) && $brand == $row['id']) echo ' selected';
+                echo '>'.$row['name'].'</option>';
+              }
             ?>
           </select>
         </div>

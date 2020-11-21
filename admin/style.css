@@ -32,6 +32,7 @@ body{
 .avt{
     height: 40px !important;
     width: 40px !important;
+    object-fit: cover;
     margin-right: 10px;
     border-radius: 50%;
 }
@@ -39,6 +40,7 @@ body{
     height: 50px !important;
     width: 50px !important;
     border-radius: 50%;
+    object-fit: cover;
     background-color: #203864 !important;
 }
 #qtv{
