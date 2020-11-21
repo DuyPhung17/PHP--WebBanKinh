@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 20, 2020 lúc 03:40 PM
+-- Thời gian đã tạo: Th10 21, 2020 lúc 03:54 AM
 -- Phiên bản máy phục vụ: 10.4.14-MariaDB
 -- Phiên bản PHP: 7.4.10
 
@@ -184,9 +184,9 @@ CREATE TABLE `comment` (
 
 INSERT INTO `comment` (`id`, `id_product`, `id_user`, `text`, `rate`) VALUES
 (2, 1, 11, 'Kính rất đẹp, tôi mua cái thứ 10 rồi vẫn ưng', 5),
-(3, 1, 2, 'Đeo vào đẹp trai hẳn !!!', 4),
+(3, 1, 2, 'Đeo vào đẹp trai hẳn !!!', 5),
 (4, 1, 3, 'Mắc quá ai mua -_- cho 3 sao thôi', 3),
-(5, 12, 15, 'Kính vừa đẹp vừa rẻ.', 5);
+(5, 12, 15, 'Kính vừa đẹp vừa rẻ.', 4);
 
 -- --------------------------------------------------------
 
@@ -210,7 +210,7 @@ CREATE TABLE `glasses` (
 --
 
 INSERT INTO `glasses` (`id`, `name`, `id_brand`, `image`, `normal_price`, `sale_price`, `rating`, `new`) VALUES
-(1, 'Fendi FF011', 3, 'fendi1.png', 3246000, NULL, 4, b'1'),
+(1, 'Fendi FF011', 3, 'fendi1.png', 3246000, NULL, 5, b'1'),
 (2, 'Fendi FF021', 3, 'fendi2.png', 3546000, 3326000, 4, NULL),
 (5, 'Fendi Orchidea', 3, 'fendi3.png', 4820000, 4690000, 5, NULL),
 (6, 'Fendi F08', 3, 'fendi4.png', 3286000, NULL, 3, NULL),
@@ -360,7 +360,7 @@ ALTER TABLE `brand`
 -- AUTO_INCREMENT cho bảng `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT cho bảng `glasses`

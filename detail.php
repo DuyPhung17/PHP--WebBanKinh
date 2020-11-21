@@ -25,7 +25,7 @@
     $resultlq = mysqli_query($conn,$sqllq);
 
     //Comment
-    $sql_cmt = 'select text,rate, account.name as aname, account.image as aimg from comment join glasses
+    $sql_cmt = 'select comment.id as cmid, text,rate, account.name as aname, account.image as aimg from comment join glasses
                     on comment.id_product = glasses.id
                     join account on comment.id_user = account.id
                 where glasses.id = '.$id;
@@ -42,8 +42,19 @@
                             VALUES ('.$id.','.$_SESSION['id'].',"'.$text.'",'.$rate.')';
             mysqli_query($conn,$sql_addcmt);
         } 
+        //Cap nhat rate
+        $sql_rate = 'select rate from comment where id_product ='.$id;
+        $result_rate = mysqli_query($conn,$sql_rate);
+        $arr_rate = array();
+        while($row_rate = mysqli_fetch_array($result_rate))
+            $arr_rate[] = $row_rate['rate'];  
+        $rating_new = round(array_sum($arr_rate)/count($arr_rate));
+        //Cap nhat rating cho glasses            
+        $sql_rating = 'update glasses set rating = '.$rating_new.' where id='.$id;
+        mysqli_query($conn,$sql_rating);
         header("Refresh:0");
     }
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -135,12 +146,15 @@
                         <div class="comment_box mt-3">
                             <img src="img/'.$row['aimg'].'">
                             <div class="comment_text">
-                                <h5 class="font-weight-bold">'.$row['aname'].'</h6>
+                                <h5 class="font-weight-bold text-color">'.$row['aname'].'</h6>
                                 <p>'.$row['text'].'</p>
                                 <p>Đánh giá:';
                                 for($i=0; $i<$row['rate']; $i++)
                                         echo ' <i class="fa fa-star"></i>'; 
-                                echo'</p>
+                                echo'</p>';
+                                if($row['aname'] == $_SESSION['name'])
+                                echo '<a href="comment_delete.php?id='.$row['cmid'].'" class="text-dark"><i>Xóa </i></a>';
+                                echo '
                             </div>
                         </div>
                         ';
@@ -187,7 +201,7 @@
                     </div>
                 </div>
             </div>
-        <!--Form danh gia-->
+        <!--Form danh gia-->  
 
         <!--Sản phẩm khác-->
             <div style="padding-left: 50px;">
