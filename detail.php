@@ -152,7 +152,7 @@
                                 for($i=0; $i<$row['rate']; $i++)
                                         echo ' <i class="fa fa-star"></i>'; 
                                 echo'</p>';
-                                if($row['aname'] == $_SESSION['name'])
+                                if(!empty($_SESSION['id']) && $row['aname'] == $_SESSION['name'])
                                 echo '<a href="comment_delete.php?id='.$row['cmid'].'" class="text-dark"><i>Xóa </i></a>';
                                 echo '
                             </div>
