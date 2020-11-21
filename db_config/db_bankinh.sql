@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 21, 2020 lúc 03:54 AM
+-- Thời gian đã tạo: Th10 21, 2020 lúc 01:41 PM
 -- Phiên bản máy phục vụ: 10.4.14-MariaDB
 -- Phiên bản PHP: 7.4.10
 
@@ -43,13 +43,13 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`id`, `name`, `username`, `password`, `admin`, `phone`, `address`, `image`) VALUES
-(1, 'Phùng Bá Duy', 'duy', '123', b'1', '0986858382', '14 Ngọc Thảo, Nha Trang', 'panda.png'),
+(1, 'Phùng Bá Duy', 'duy', '123', b'1', '0868478729', 'Nha Trang', 'panda.png'),
 (2, 'Nguyễn Xuân Huy', 'huy', '123', NULL, '0916858382', 'Ninh Thuận', 'avatar.png'),
 (3, 'Diệp Túy Dũng', 'dung', '123', NULL, '0913320382', 'Cam Ranh', 'avatar.png'),
-(4, 'Nguyễn Ngọc Hoàng', 'hoang', '123', NULL, '0913320382', 'Phú Yên', 'avatar.png'),
+(4, 'Nguyễn Ngọc Hoàng', 'hoang', '123', NULL, '0913320382', 'Phú Yên', 'tomato_avt.png'),
 (5, 'Vũ Ngọc Đoàn', 'doan', '123', NULL, '01625320382', 'Nha Trang', 'avatar.png'),
 (6, 'Võ Minh Toàn', 'toan', '123', NULL, '01625320333', 'Quảng Nam', 'avatar.png'),
-(11, 'Phùng Bá Duy', 'duy2', '123', NULL, '0868478729', 'Nha Trang', 'background.jpg'),
+(11, 'Phùng Bá Duy', 'duy2', '123', NULL, '0868478720', 'Nha Trang', 'anhthe.jpg'),
 (15, 'Đỗ Thúy Quỳnh', 'quynh', '123', NULL, '0868478729', 'Phú Yên', 'avatar.png');
 
 -- --------------------------------------------------------
@@ -81,8 +81,8 @@ INSERT INTO `bills` (`id`, `id_customer`, `date_order`, `total`, `status`) VALUE
 (23, 2, '2020-11-11', 9953000, b'1'),
 (26, 11, '2020-11-14', 15836000, b'1'),
 (27, 11, '2020-11-14', 7479000, b'1'),
-(28, 11, '2020-11-14', 8066000, b'0'),
-(29, 11, '2020-11-16', 10630000, b'0'),
+(28, 11, '2020-11-14', 8066000, b'1'),
+(33, 11, '2020-11-21', 6993000, b'0'),
 (30, 11, '2020-11-19', 9229000, b'0'),
 (31, 15, '2020-11-20', 9829000, b'0');
 
@@ -133,7 +133,11 @@ INSERT INTO `bill_detail` (`id`, `id_bill`, `id_glasses`, `quantity`, `normal_pr
 (41, 30, 12, 1, 2737000),
 (42, 30, 1, 2, 3246000),
 (43, 31, 2, 2, 3546000),
-(44, 31, 12, 1, 2737000);
+(44, 31, 12, 1, 2737000),
+(45, 32, 12, 1, 2737000),
+(46, 32, 15, 1, 2449000),
+(47, 33, 1, 1, 3246000),
+(48, 33, 17, 1, 3747000);
 
 -- --------------------------------------------------------
 
@@ -342,19 +346,19 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT cho bảng `bills`
 --
 ALTER TABLE `bills`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT cho bảng `bill_detail`
 --
 ALTER TABLE `bill_detail`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT cho bảng `brand`
 --
 ALTER TABLE `brand`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT cho bảng `comment`
@@ -366,7 +370,7 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT cho bảng `glasses`
 --
 ALTER TABLE `glasses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
