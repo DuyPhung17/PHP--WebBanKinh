@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 21, 2020 lúc 01:41 PM
+-- Thời gian đã tạo: Th10 22, 2020 lúc 01:14 PM
 -- Phiên bản máy phục vụ: 10.4.14-MariaDB
 -- Phiên bản PHP: 7.4.10
 
@@ -340,7 +340,7 @@ ALTER TABLE `glasses`
 -- AUTO_INCREMENT cho bảng `account`
 --
 ALTER TABLE `account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT cho bảng `bills`
