@@ -1,5 +1,5 @@
 <?php 
-  require_once('../db_config/db_connect.php');
+  require_once('db_config/db_connect.php');
   $sql_brand = 'select * from brand';
   $result_brand = mysqli_query($conn, $sql_brand);
   

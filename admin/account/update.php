@@ -1,7 +1,7 @@
 <?php 
   if(isset($_GET['id']))
   $id = $_GET['id'];
-  require_once('../db_config/db_connect.php');
+  require_once('db_config/db_connect.php');
 
   $sql_account = 'select * from account where id ='.$id;
   $result_account = mysqli_query($conn, $sql_account);

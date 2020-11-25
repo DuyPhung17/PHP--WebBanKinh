@@ -1,5 +1,5 @@
 <?php 
-  require_once('../db_config/db_connect.php');
+  require_once('db_config/db_connect.php');
   $errName = $errCountry = $errImg = "";
   if(isset($_POST['submit']))
   {

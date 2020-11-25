@@ -2,7 +2,7 @@
   if(isset($_GET['id']))
     $id = $_GET['id'];
   
-  require_once('../db_config/db_connect.php');
+  require_once('db_config/db_connect.php');
   $sql_product = 'Select glasses.name as gname, glasses.image as gimage, normal_price, sale_price, brand.id as bid
                     from glasses join brand
                     on glasses.id_brand = brand.id 
