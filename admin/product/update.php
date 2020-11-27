@@ -2,7 +2,7 @@
   if(isset($_GET['id']))
     $id = $_GET['id'];
   
-  require_once('db_config/db_connect.php');
+  require_once('../db_config/db_connect.php');
   $sql_product = 'Select glasses.name as gname, glasses.image as gimage, normal_price, sale_price, brand.id as bid
                     from glasses join brand
                     on glasses.id_brand = brand.id 
@@ -27,7 +27,7 @@
       $name = $_POST['name'];
       if($name =="")
         $errName = "Chưa nhập tên sản phẩm";
-      elseif(!is_string($name))
+      elseif(!preg_match('/[a-zA-Z0-9]/', $name))
         $errName = "Dữ liệu không hợp lệ";
     }
     //Kiem Tra brand
@@ -158,7 +158,7 @@
           <label class="col-sm-4 col-form-label">Ảnh sản phẩm: </label>
           <div class="custom-file col-sm-8">
             <input type="file" class="custom-file-input" name="img" id="img" accept="image/*" onchange="showPreview(event);">
-            <label class="custom-file-label" for="inputGroupFile01">Chọn ảnh</label>
+            <label class="custom-file-label" for="inputGroupFile01"><?php if(isset($img)) echo $img; else echo "Chọn ảnh sản phẩm"; ?></label>
           </div>
           <!--script de hien thi ten anh-->
           <script>

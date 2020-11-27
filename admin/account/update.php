@@ -1,7 +1,7 @@
 <?php 
   if(isset($_GET['id']))
   $id = $_GET['id'];
-  require_once('db_config/db_connect.php');
+  require_once('../db_config/db_connect.php');
 
   $sql_account = 'select * from account where id ='.$id;
   $result_account = mysqli_query($conn, $sql_account);
@@ -12,6 +12,7 @@
   $password = $row['password'];
   $phone = $row['phone'];
   $address = $row['address'];
+  $img = $row['image'];
 
   $errName = $errAddress = $errPhone = $errUsername = $errPassword = $errPasswordRT = "";
   if(isset($_POST['submit']))
@@ -197,7 +198,7 @@
             <label class="col-sm-4 col-form-label">Ảnh đại diện: </label>
             <div class="custom-file col-sm-8">
               <input type="file" class="custom-file-input" value="<?php if(isset($img)) echo $img ?>" name="img" id="img" accept="image/*" onchange="showPreview(event);">
-              <label class="custom-file-label" for="inputGroupFile01">Chọn ảnh</label>
+              <label class="custom-file-label" for="inputGroupFile01"><?php if(isset($img)) echo $img; else echo "Chọn ảnh sản phẩm"; ?></label>
             </div>
             <!--script de hien thi ten anh-->
             <script>
@@ -206,11 +207,11 @@
               $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
             });
             </script>
-            <!--Phan xem truoc anh-->
-            <div class="row">
-              <div class="col-sm-4"></div>
-              <div class="col-sm-8"><img id="img_prv" <?php if(isset($img)) echo 'src="../img/'.$img.'"'?>></div>
-            </div>
+        </div>
+        <!--Phan xem truoc anh-->
+        <div class="row">
+          <div class="col-sm-4"></div>
+          <div class="col-sm-8"><img id="img_prv" <?php if(isset($img)) echo 'src="../img/'.$img.'"'?>></div>
         </div>
         
         <div class="form-group row">

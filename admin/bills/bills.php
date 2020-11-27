@@ -1,5 +1,5 @@
 <?php 
-    require_once('db_config/db_connect.php');
+    require_once('../db_config/db_connect.php');
 
     //Phan trang
     $sql_qty = 'select count(id) as qty from bills';
@@ -13,7 +13,7 @@
     $index = ($current_Page - 1)*$product_perPage; //Vi tri bat dau lay trong $sql LIMIT
 
     $sql = 'Select * from account join bills 
-            on account.id = bills.id_customer order by status limit '.$index.', '.$product_perPage.'';
+            on account.id = bills.id_customer order by status,bills.id desc limit '.$index.', '.$product_perPage.'';
     $result = mysqli_query($conn,$sql);
 ?>
 

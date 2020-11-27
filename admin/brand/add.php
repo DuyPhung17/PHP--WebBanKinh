@@ -1,5 +1,5 @@
 <?php 
-  require_once('db_config/db_connect.php');
+  require_once('../db_config/db_connect.php');
   $errName = $errCountry = $errImg = "";
   if(isset($_POST['submit']))
   {
@@ -9,7 +9,7 @@
       $name = $_POST['name'];
       if($name =="")
         $errName = "Chưa nhập tên thương hiệu";
-      elseif(!is_string($name))
+      elseif(!preg_match('/[a-zA-Z ]/', $name))
         $errName = "Dữ liệu không hợp lệ";
     }
     //Kiem Tra country
@@ -18,7 +18,7 @@
       $country = $_POST['country'];
       if($country =="")
         $errCountry = "Chưa nhập xuất xứ";
-      elseif(!is_string($country))
+      elseif(!preg_match('/[a-zA-Z ]/', $country))
         $errCountry = "Dữ liệu không hợp lệ";
     }
     //Kiem Tra img

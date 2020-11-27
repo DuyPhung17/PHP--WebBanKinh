@@ -1,5 +1,5 @@
 <?php 
-    require_once('db_config/db_connect.php');
+    require_once('../db_config/db_connect.php');
 
     //Phan trang
     $sql_qty = 'select count(id) as qty from glasses';

@@ -1,5 +1,5 @@
 <?php 
-  require_once('db_config/db_connect.php');
+  require_once('../db_config/db_connect.php');
   $sql_brand = 'select * from brand';
   $result_brand = mysqli_query($conn, $sql_brand);
   
@@ -12,7 +12,7 @@
       $name = $_POST['name'];
       if($name =="")
         $errName = "Chưa nhập tên sản phẩm";
-      elseif(!is_string($name))
+      elseif(!preg_match('/[a-zA-Z0-9]/', $name))
         $errName = "Dữ liệu không hợp lệ";
     }
     //Kiem Tra brand
@@ -141,7 +141,7 @@
           <label class="col-sm-4 col-form-label">Ảnh sản phẩm: </label>
           <div class="custom-file col-sm-8">
             <input type="file" class="custom-file-input" name="img" id="img" accept="image/*" onchange="showPreview(event);">
-            <label class="custom-file-label" for="inputGroupFile01">Chọn ảnh</label>
+            <label class="custom-file-label" for="inputGroupFile01">Chọn ảnh sản phẩm</label>
           </div>
           <!--script de hien thi ten anh-->
           <script>

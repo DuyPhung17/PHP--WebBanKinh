@@ -1,5 +1,5 @@
 <?php 
-    require_once('db_config/db_connect.php');
+    require_once('../db_config/db_connect.php');
     if(isset($_GET['id']))
         $id = $_GET['id'];
     //Phan trang

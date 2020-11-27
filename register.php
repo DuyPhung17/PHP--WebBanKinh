@@ -12,7 +12,7 @@
       $name = $_POST['name'];
       if($name =="")
         $errName = "Chưa nhập tên";
-      elseif(!is_string($name))
+      elseif(!preg_match('/[a-zA-Z ]/', $name))
         $errName = "Dữ liệu không hợp lệ";
     }
     //Kiem Tra address
@@ -21,7 +21,7 @@
         $address = $_POST['address'];
         if($address =="")
         $errAddress = "Chưa nhập địa chỉ";
-        elseif(!is_string($address))
+        elseif(!preg_match('/[a-zA-Z0-9\/]/', $address))
         $errAddress = "Dữ liệu không hợp lệ";
     }
     //Kiem Tra phone
@@ -70,12 +70,17 @@
     }
     //Kiem Tra img
     if(isset($_FILES['img']))
-    {
+    {   
+      if($_FILES['img']['name'] == "")
+        $errImg = "Chưa chọn ảnh đại diện! Ảnh đại diện sẽ thiêt lập theo mặc định";
+      else{
         $img = $_FILES['img']['name'];
         $target_dir = "img/";
         $target_file = $target_dir . basename($img);
         move_uploaded_file($_FILES['img']['tmp_name'],$target_file);
+      }
     }
+
     if(empty($img)) $img = 'avatar.png';
     //add new
     if(empty($errName) && empty($errAddress) && empty($errPhone) && empty($errUsername) && empty($errPassword) && empty($errPasswordRT))
@@ -215,7 +220,7 @@
             <label class="col-sm-4 col-form-label">Ảnh đại diện: </label>
             <div class="custom-file col-sm-8">
               <input type="file" class="custom-file-input" value="<?php if(isset($img)) echo $img ?>" name="img" id="img" accept="image/*" onchange="showPreview(event);">
-              <label class="custom-file-label" for="inputGroupFile01">Chọn ảnh</label>
+              <label class="custom-file-label" for="inputGroupFile01"><?php if(isset($img)) echo $img; else echo "Chọn ảnh đại diện"; ?></label>
             </div>
             <!--script de hien thi ten anh-->
             <script>
@@ -224,13 +229,18 @@
               $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
             });
             </script>
-            <!--Phan xem truoc anh-->
-            <div class="row">
-              <div class="col-sm-4"></div>
-              <div class="col-sm-8"><img id="img_prv" <?php if(isset($img)) echo 'src="img/'.$img.'"'?>></div>
-            </div>
         </div>
-        
+
+            <div class="form-group row">
+              <p class="text-secondary col-sm-4"></p>
+              <p class="text-secondary col-sm-8">Chưa chọn ảnh đại diện! Ảnh đại diện sẽ thiêt lập theo mặc định</p>
+            </div>
+
+        <!--Phan xem truoc anh-->
+        <div class="row">
+          <div class="col-sm-4"></div>
+          <div class="col-sm-8"><img id="img_prv" <?php if(isset($img)) echo 'src="img/'.$img.'"'?>></div>
+        </div>
         <div class="form-group row">
         <p class="col-sm-4"></p>
           <div class="col-sm-8 pl-0 pt-3">

@@ -1,5 +1,5 @@
 <?php 
-  require_once('db_config/db_connect.php');
+  require_once('../db_config/db_connect.php');
   
   if(isset($_GET['id']))
   $id = $_GET['id'];
@@ -90,7 +90,7 @@
           <label class="col-sm-4 col-form-label">Logo thương hiệu: </label>
           <div class="custom-file col-sm-8">
             <input type="file" class="custom-file-input" name="img" id="img" accept="image/*" onchange="showPreview(event);">
-            <label class="custom-file-label" for="inputGroupFile01">Chọn ảnh</label>
+            <label class="custom-file-label" for="inputGroupFile01"><?php if(isset($img)) echo $img; else echo "Chọn ảnh thương hiệu"; ?></label>
           </div>
           <!--script de hien thi ten anh-->
           <script>
