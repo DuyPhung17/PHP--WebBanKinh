@@ -12,3 +12,14 @@ function showPreview(event){
       preview.src = src;
     }
 }
+
+function printBill() {  
+  var divContents = document.getElementById("printbill").innerHTML;  
+  var printWindow = window.open('', '', 'height=600,width=1200');  
+  printWindow.document.write('<html><head><title>Thông Tin Hóa Đơn</title>');  
+  printWindow.document.write('</head><body >');  
+  printWindow.document.write(divContents);  
+  printWindow.document.write('</body></html>');  
+  printWindow.document.close();  
+  printWindow.print();  
+}  

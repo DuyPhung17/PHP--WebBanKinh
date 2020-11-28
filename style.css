@@ -333,6 +333,10 @@ nav{
 -moz-box-shadow: 0px 6px 17px 1px rgba(0,0,0,0.42);
 box-shadow: 0px 6px 17px 1px rgba(0,0,0,0.42);
 }
+#printb{
+    margin-left: 37vw;
+    margin-top: 35px;
+}
 .bd_data{
     margin-left:5em;
 }

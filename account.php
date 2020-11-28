@@ -167,7 +167,7 @@
                     <div class="modal-body">
                         <div class="container-fluid">
                             <div class="row justify-content-center">
-                                <div id="lgform">
+                                <div id="lgform" class="text-center">
                                     <a href="index.html" data-dismiss="modal"><i class="fa fa-times-circle"></i></a>
                                     <form method="post" action="">
                                         <div class="text-center">
@@ -181,8 +181,7 @@
                                             <label>Nhập mật khẩu</label>
                                             <input type="password" class="form-control" name="password">
                                         </div>
-                                            <a href="#" class="text-color">Quên mật khẩu</a>
-                                            <button type="submit" name="submit" id="signup" href="#" class="btn btn-color ml-5">Tiếp tục</button>
+                                            <button type="submit" name="submit" id="signup" href="#" class="btn btn-color">Tiếp tục</button>
                                         </div>
                                     </form>
                                 </div>    

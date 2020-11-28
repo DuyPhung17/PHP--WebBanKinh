@@ -17,7 +17,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        <!-- <script src="code.js"></script> -->
+        <script src="code.js"></script>
       </head>
   <body>
   <?php 
@@ -67,9 +67,9 @@
         echo '<script type="text/javascript">swal("Tạo tài khoản thành công!", "Tên tài khoản: '.$name.'", "success");</script>';
     ?>   
 
-<div class="container mt-4">
+<div class="container mt-4 bill_content">
     
-    <div class="bill_detail p-5">
+    <div  id="printbill"  class="bill_detail p-5">
 
         <h4 class="text-center pb-3 font-weight-bold"><img src="img/logo.png" height="25px" class="mr-1"> THÔNG TIN HÓA ĐƠN</h4>
         <br>
@@ -109,39 +109,8 @@
         <br><br><br>
         <p class="text-center mb-1"><i>Cảm ơn quý khách đã mua hàng !</i></p>
     </div>
-
-    <!-- check password -->
-    <div class="modal fade" id="checkpass">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="container-fluid">
-                        <div class="row justify-content-center">
-                            <div id="lgform">
-                                <a href="index.html" data-dismiss="modal"><i class="fa fa-times-circle"></i></a>
-                                <form method="post" action="">
-                                    <div class="text-center">
-                                        <?php 
-                                            echo '<img id="accimg" src="./img/'.$_SESSION['img'].'">'; 
-                                            echo '<h5><b>'.$_SESSION['name'].'</b></h5>';                                   
-                                        ?>
-                                    </div>
-                                    <div class="form-group">
-                                        <i class="fa fa-lock" aria-hidden="true"></i>
-                                        <label>Nhập mật khẩu</label>
-                                        <input type="password" class="form-control" name="password">
-                                    </div>
-                                        <a href="#" class="text-color">Quên mật khẩu</a>
-                                        <button type="submit" name="submit" id="signup" href="#" class="btn btn-color ml-5">Tiếp tục</button>
-                                    </div>
-                                </form>
-                            </div>    
-                        </div> 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
+    <button id="printb" type="button" onclick="printBill();" class="btn btn-lg btn-color">In hóa đơn</button>
 
 </div>
     <!----------------------- VIII. Footer -->
